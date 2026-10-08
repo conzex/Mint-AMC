@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import PageContainer from '@/components/layout/PageContainer';
 import PageHeroBand from '@/components/layout/PageHeroBand';
@@ -13,14 +15,19 @@ import {
   NetworkSymbol,
   PrinterSymbol,
   ShieldHalfSymbol,
+  ClockSymbol,
   ArrowRightSymbol,
   CheckmarkCircleSymbol,
   MapSymbol,
+  Building2Symbol,
+  ShieldCheckSymbol,
 } from '@/components/symbols';
 import { homeData } from '@/content/home';
 import { serviceCategories } from '@/content/services';
 
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState<'all' | 'endpoint' | 'infrastructure' | 'datacentre'>('all');
+
   const getServiceIcon = (iconName: string) => {
     switch (iconName) {
       case 'desktop':
@@ -33,14 +40,23 @@ export default function HomePage() {
         return <NetworkSymbol className="w-6 h-6 text-tech-blue" />;
       case 'printer':
         return <PrinterSymbol className="w-6 h-6 text-tech-blue" />;
+      case 'clock':
+        return <ClockSymbol className="w-6 h-6 text-tech-blue" />;
       default:
         return <ShieldHalfSymbol className="w-6 h-6 text-tech-blue" />;
     }
   };
 
+  const filteredServices = serviceCategories.filter((s) => {
+    if (activeTab === 'endpoint') return s.slug === 'hardware-amc' || s.slug === 'software-support' || s.slug === 'printer-peripheral';
+    if (activeTab === 'infrastructure') return s.slug === 'network-management' || s.slug === 'server-storage' || s.slug === 'cloud-support';
+    if (activeTab === 'datacentre') return s.slug === 'data-centre' || s.slug === '247-monitoring';
+    return true;
+  });
+
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section — Montagu Style High Impact Headline */}
       <PageHeroBand
         size="large"
         badge={
@@ -72,14 +88,14 @@ export default function HomePage() {
       {/* Trust Bar */}
       <TrustBar />
 
-      {/* Metric Tiles Section */}
+      {/* Metric Stat Tiles Bar */}
       <section className="py-12 bg-white border-b border-border-gray">
         <PageContainer>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {homeData.metrics.map((metric, index) => (
               <div
                 key={index}
-                className="p-6 bg-cool-white border border-border-gray rounded-md text-center"
+                className="p-6 bg-cool-white border border-border-gray rounded-md text-center hover:border-tech-blue/50 transition-colors"
               >
                 <div className="text-3xl sm:text-4xl font-extrabold text-tech-blue tracking-tight">
                   {metric.value}
@@ -96,25 +112,68 @@ export default function HomePage() {
         </PageContainer>
       </section>
 
-      {/* Service Cards Grid (6 Services) */}
+      {/* Montagu-style Filterable Capabilities Section */}
       <section className="py-16 bg-cool-white/50 border-b border-border-gray">
         <PageContainer>
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <Badge variant="blue" className="mb-2">Enterprise AMC Offerings</Badge>
-            <h2 className="text-2xl sm:text-3xl font-bold text-dark-navy tracking-tight">
-              Comprehensive IT Maintenance Services
-            </h2>
-            <p className="text-slate-text mt-2 text-sm">
-              Tailored AMC packages for corporate infrastructures, branch networks, and data centre deployments.
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+              <Badge variant="blue" className="mb-2">Infrastructure Capabilities</Badge>
+              <h2 className="text-2xl sm:text-3xl font-bold text-dark-navy tracking-tight">
+                Enterprise Service Domains
+              </h2>
+              <p className="text-slate-text text-sm mt-1">
+                Explore our full-stack maintenance coverage from endpoints to hybrid cloud data centres.
+              </p>
+            </div>
+
+            {/* Interactive Domain Filter Tabs */}
+            <div className="flex items-center gap-1.5 p-1 bg-white border border-border-gray rounded-md text-xs font-medium self-start md:self-auto overflow-x-auto">
+              <button
+                type="button"
+                onClick={() => setActiveTab('all')}
+                className={`px-3 py-1.5 rounded transition-colors whitespace-nowrap ${
+                  activeTab === 'all' ? 'bg-tech-blue text-white font-semibold' : 'text-slate-text hover:text-dark-navy'
+                }`}
+              >
+                All Domains
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('endpoint')}
+                className={`px-3 py-1.5 rounded transition-colors whitespace-nowrap ${
+                  activeTab === 'endpoint' ? 'bg-tech-blue text-white font-semibold' : 'text-slate-text hover:text-dark-navy'
+                }`}
+              >
+                Endpoints & Devices
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('infrastructure')}
+                className={`px-3 py-1.5 rounded transition-colors whitespace-nowrap ${
+                  activeTab === 'infrastructure' ? 'bg-tech-blue text-white font-semibold' : 'text-slate-text hover:text-dark-navy'
+                }`}
+              >
+                Network & Servers
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('datacentre')}
+                className={`px-3 py-1.5 rounded transition-colors whitespace-nowrap ${
+                  activeTab === 'datacentre' ? 'bg-tech-blue text-white font-semibold' : 'text-slate-text hover:text-dark-navy'
+                }`}
+              >
+                Data Centre & NOC
+              </button>
+            </div>
           </div>
 
+          {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {serviceCategories.slice(0, 6).map((service) => (
-              <Card key={service.slug} className="flex flex-col justify-between">
+            {filteredServices.map((service) => (
+              <Card key={service.slug} className="flex flex-col justify-between hover:shadow-md transition-shadow">
                 <div>
                   <CardHeader className="flex flex-row items-center gap-3">
-                    <div className="p-2.5 bg-tech-blue/10 rounded-md">
+                    <div className="p-2.5 bg-tech-blue/10 rounded-md shrink-0">
                       {getServiceIcon(service.iconName)}
                     </div>
                     <div>
@@ -123,17 +182,21 @@ export default function HomePage() {
                     </div>
                   </CardHeader>
                   <CardContent className="py-4">
-                    <CardDescription className="text-sm">
+                    <CardDescription className="text-sm leading-relaxed">
                       {service.shortDescription}
                     </CardDescription>
-                    <ul className="mt-4 space-y-2">
-                      {service.benefits.slice(0, 3).map((benefit, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-slate-text">
-                          <CheckmarkCircleSymbol className="w-4 h-4 text-mint-green shrink-0 mt-0.5" />
-                          <span>{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
+
+                    <div className="mt-4 pt-4 border-t border-border-gray/60">
+                      <div className="text-xs font-semibold text-dark-navy mb-2">Deliverable Highlights:</div>
+                      <ul className="space-y-1.5">
+                        {service.deliverables.slice(0, 2).map((deliv, i) => (
+                          <li key={i} className="flex items-start gap-2 text-xs text-slate-text">
+                            <CheckmarkCircleSymbol className="w-3.5 h-3.5 text-mint-green shrink-0 mt-0.5" />
+                            <span>{deliv}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </CardContent>
                 </div>
                 <div className="p-4 border-t border-border-gray/60 bg-cool-white/50">
@@ -141,48 +204,38 @@ export default function HomePage() {
                     href={`/services/${service.slug}`}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-tech-blue hover:underline"
                   >
-                    <span>Explore Service Details</span>
+                    <span>View Specifications</span>
                     <ArrowRightSymbol className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </Card>
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-border-gray text-dark-navy font-medium text-sm rounded hover:border-tech-blue transition-colors"
-            >
-              <span>View All 8 Service Categories</span>
-              <ArrowRightSymbol className="w-4 h-4" />
-            </Link>
-          </div>
         </PageContainer>
       </section>
 
-      {/* How It Works Timeline */}
+      {/* Montagu-style "Our Approach" Process Timeline */}
       <section className="py-16 bg-white border-b border-border-gray">
         <PageContainer>
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <Badge variant="navy" className="mb-2">Operational Workflow</Badge>
+            <Badge variant="navy" className="mb-2">Operational Execution</Badge>
             <h2 className="text-2xl sm:text-3xl font-bold text-dark-navy tracking-tight">
-              How Mint AMC Service Onboarding Works
+              Our AMC Service Delivery Approach
             </h2>
             <p className="text-slate-text mt-2 text-sm">
-              Structured 4-step process to audit, transition, and maintain your IT environment seamlessly.
+              Structured 4-phase transition methodology ensures 100% operational continuity and zero downtime during onboarding.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {homeData.timeline.map((step, index) => (
-              <div
-                key={index}
-                className="p-6 bg-cool-white border border-border-gray rounded-md relative flex flex-col justify-between"
-              >
+              <Card key={index} className="p-6 relative flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-full bg-tech-blue text-white font-bold flex items-center justify-center text-sm mb-4">
-                    {step.step}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="w-8 h-8 rounded-full bg-tech-blue text-white font-bold flex items-center justify-center text-xs">
+                      {step.step}
+                    </span>
+                    <Badge variant="gray">Phase {index + 1}</Badge>
                   </div>
                   <h3 className="text-base font-semibold text-dark-navy mb-2">
                     {step.title}
@@ -191,28 +244,34 @@ export default function HomePage() {
                     {step.description}
                   </p>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </PageContainer>
       </section>
 
-      {/* Testimonials */}
+      {/* Enterprise Case Studies & Client Trust */}
       <section className="py-16 bg-cool-white/50 border-b border-border-gray">
         <PageContainer>
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <Badge variant="mint" className="mb-2">Client Trust</Badge>
+            <Badge variant="mint" className="mb-2">Client Success & Case Studies</Badge>
             <h2 className="text-2xl sm:text-3xl font-bold text-dark-navy tracking-tight">
-              Enterprise Success Stories
+              Trusted by Corporate IT Leaders
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {homeData.testimonials.map((t, index) => (
-              <Card key={index} className="p-6 flex flex-col justify-between">
-                <p className="text-sm text-slate-text italic leading-relaxed mb-6">
-                  "{t.quote}"
-                </p>
+              <Card key={index} className="p-6 flex flex-col justify-between bg-white">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge variant="blue">Verified Client</Badge>
+                    <ShieldCheckSymbol className="w-4 h-4 text-mint-green" />
+                  </div>
+                  <p className="text-sm text-slate-text italic leading-relaxed mb-6">
+                    "{t.quote}"
+                  </p>
+                </div>
                 <div className="border-t border-border-gray/60 pt-4 flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-tech-blue/10 text-tech-blue font-bold flex items-center justify-center text-xs shrink-0">
                     {t.author.charAt(0)}
@@ -228,12 +287,12 @@ export default function HomePage() {
         </PageContainer>
       </section>
 
-      {/* Multi-Region Coverage Map */}
+      {/* Multi-Region Coverage Map & Parent Entity Synergy */}
       <section className="py-16 bg-white border-b border-border-gray">
         <PageContainer>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 space-y-4">
-              <Badge variant="blue">National Reach</Badge>
+              <Badge variant="blue">National Dispatch Network</Badge>
               <h2 className="text-2xl sm:text-3xl font-bold text-dark-navy tracking-tight">
                 {homeData.coverage.title}
               </h2>
@@ -251,10 +310,10 @@ export default function HomePage() {
             </div>
             <div className="lg:col-span-7 p-8 bg-cool-white border border-border-gray rounded-md flex items-center justify-center min-h-[260px] text-center">
               <div>
-                <MapSymbol className="w-16 h-16 text-tech-blue mx-auto mb-3" />
-                <h3 className="text-lg font-bold text-dark-navy">Multi-City Rapid On-Site Dispatch</h3>
+                <Building2Symbol className="w-16 h-16 text-tech-blue mx-auto mb-3" />
+                <h3 className="text-lg font-bold text-dark-navy">DPIIT Recognised Startup Identity</h3>
                 <p className="text-xs text-slate-text max-w-md mx-auto mt-1">
-                  Engineers stationed across major metro nodes for sub-2-hour on-site dispatch.
+                  Operating under CONZEX GLOBAL PRIVATE LIMITED with nationwide technical dispatch hubs.
                 </p>
               </div>
             </div>
@@ -262,7 +321,7 @@ export default function HomePage() {
         </PageContainer>
       </section>
 
-      {/* CTA Banner */}
+      {/* Bottom CTA Banner */}
       <CtaBanner
         title={homeData.ctaBanner.headline}
         subtitle={homeData.ctaBanner.subheadline}
