@@ -48,14 +48,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-slate-text antialiased">
+      <body className="min-h-screen flex flex-col bg-white text-slate-text antialiased" suppressHydrationWarning>
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />

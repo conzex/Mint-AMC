@@ -67,7 +67,7 @@ export default function ContactPage() {
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                            placeholder="e.g. {{CONTACT_FORM_NAME_LABEL}}"
+                            placeholder="e.g. Rajesh Malhotra"
                           />
                         </div>
 
@@ -81,7 +81,7 @@ export default function ContactPage() {
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                            placeholder="e.g. {{CONTACT_FORM_EMAIL_LABEL}}"
+                            placeholder="e.g. rajesh@vanguard.com"
                           />
                         </div>
                       </div>
@@ -97,7 +97,7 @@ export default function ContactPage() {
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                            placeholder="e.g. {{CONTACT_FORM_PHONE_LABEL}}"
+                            placeholder="e.g. +91 98765-43210"
                           />
                         </div>
 
@@ -111,7 +111,7 @@ export default function ContactPage() {
                             value={formData.company}
                             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                             className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                            placeholder="e.g. {{CONTACT_FORM_COMPANY_LABEL}}"
+                            placeholder="e.g. Vanguard Logistics & Supply Chain"
                           />
                         </div>
                       </div>

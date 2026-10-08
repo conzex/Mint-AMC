@@ -6,23 +6,23 @@ export default function TrustBar() {
   const highlights = [
     {
       icon: <ClockSymbol className="w-5 h-5 text-tech-blue shrink-0" />,
-      title: '{{TRUST_ITEM_1_TITLE}}',
-      description: '{{TRUST_ITEM_1_DESC}}',
+      title: 'Guaranteed SLA Response',
+      description: 'Contractual 2-hour on-site dispatch commitment for critical outages.',
     },
     {
       icon: <ShieldCheckSymbol className="w-5 h-5 text-mint-green shrink-0" />,
-      title: '{{TRUST_ITEM_2_TITLE}}',
-      description: '{{TRUST_ITEM_2_DESC}}',
+      title: '100% Genuine OEM Spares',
+      description: 'Original hardware replacement parts for Dell, HPE, Cisco & APC.',
     },
     {
       icon: <ChartUptrendSymbol className="w-5 h-5 text-tech-blue shrink-0" />,
-      title: '{{TRUST_ITEM_3_TITLE}}',
-      description: '{{TRUST_ITEM_3_DESC}}',
+      title: '24/7/365 NOC Surveillance',
+      description: 'Continuous SNMP telemetry monitoring catching failures proactively.',
     },
     {
       icon: <CheckmarkCircleSymbol className="w-5 h-5 text-mint-green shrink-0" />,
-      title: '{{TRUST_ITEM_4_TITLE}}',
-      description: '{{TRUST_ITEM_4_DESC}}',
+      title: 'Pan-India Field Network',
+      description: 'Nationwide engineer coverage across Tier 1, 2 & 3 enterprise hubs.',
     },
   ];
 
