@@ -1,17 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
+  allowedDevOrigins: ['0.0.0.0', '192.168.100.4', 'localhost'],
+  reactStrictMode: true,
 };
 
 export default nextConfig;
