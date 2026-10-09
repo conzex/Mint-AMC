@@ -1,8 +1,100 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-bg-body text-text-primary font-sans;
+:root {
+  --brand: #1c5338;
+  --brand-hover: #154a2f;
+  --accent: #c5a059;
+  --ink: #2c3135;
+  --ink-muted: #5c6166;
+  --surface: #ffffff;
+  --surface-muted: #ebf2ee;
+  --line: #d4dbd7;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-body text-ink-muted font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-ink;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+}
+
+@layer components {
+  .type-display {
+    @apply text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-ink leading-[1.15];
+  }
+
+  .type-page-title {
+    @apply text-2xl sm:text-3xl font-bold tracking-tight text-ink;
+  }
+
+  .type-section-title {
+    @apply text-lg sm:text-xl font-bold text-ink;
+  }
+
+  .type-card-title {
+    @apply text-sm font-semibold text-ink;
+  }
+
+  .type-body {
+    @apply text-sm text-ink-muted leading-relaxed;
+  }
+
+  .type-caption {
+    @apply text-xs text-ink-muted;
+  }
+
+  .type-eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-wider text-brand;
+  }
+
+  .ui-card {
+    @apply bg-surface border border-line rounded shadow-card;
+  }
+
+  .ui-table-wrap {
+    @apply border border-line rounded overflow-hidden bg-surface;
+  }
+
+  .ui-table {
+    @apply w-full text-sm;
+  }
+
+  .ui-table thead tr {
+    @apply bg-card-header border-b border-line text-left;
+  }
+
+  .ui-table th {
+    @apply p-3 font-semibold text-ink;
+  }
+
+  .ui-table tbody {
+    @apply divide-y divide-line;
+  }
+
+  .ui-table td {
+    @apply p-3 text-ink-muted;
+  }
+
+  .ui-table tbody tr {
+    @apply hover:bg-row-hover transition-colors;
+  }
+
+  .ui-input {
+    @apply w-full px-3 py-2 border border-line rounded text-sm text-ink bg-surface placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-brand/25;
+  }
 }

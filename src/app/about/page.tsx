@@ -1,52 +1,45 @@
 import MarketingChrome from '@/components/layout/marketing-chrome';
-import PageContainer from '@/components/layout/page-container';
 import PageHeroBand from '@/components/layout/page-hero-band';
+import PageSection from '@/components/layout/page-section';
+import { PanelCard } from '@/components/ui/panel-card';
 import { aboutContent } from '@/content/about';
 
-export const metadata = { title: '{{META_ABOUT_TITLE}}' };
+export const metadata = { title: 'About | Mint AMC' };
 
 export default function AboutPage() {
   return (
     <MarketingChrome>
       <PageHeroBand title={aboutContent.heroTitle} subtitle={aboutContent.heroSubtitle} align="left" />
-      <section className="py-10 bg-bg-body">
-        <PageContainer className="space-y-6 max-w-3xl">
-          <div className="bg-white border border-border-card rounded p-5">
-            <h2 className="text-sm font-bold text-text-primary">{aboutContent.storyTitle}</h2>
-            <p className="text-sm text-text-secondary mt-2 leading-relaxed">{aboutContent.storyBody}</p>
-          </div>
-          <div className="bg-white border border-border-card rounded p-5">
-            <h2 className="text-sm font-bold text-text-primary">{aboutContent.missionTitle}</h2>
-            <p className="text-sm text-text-secondary mt-2 leading-relaxed">{aboutContent.missionBody}</p>
-          </div>
-          <div className="bg-white border border-border-card rounded p-5">
-            <h2 className="text-sm font-bold text-text-primary">{aboutContent.valuesTitle}</h2>
-            <ul className="mt-2 text-sm text-text-secondary space-y-1 list-disc list-inside">
-              {aboutContent.values.map((v) => <li key={v}>{v}</li>)}
-            </ul>
-          </div>
-          <div className="bg-white border border-border-card rounded p-5">
-            <h2 className="text-sm font-bold text-text-primary">{aboutContent.leadershipTitle}</h2>
-            {aboutContent.leadership.map((l) => (
-              <div key={l.name} className="mt-3 border-t border-border-card pt-3 first:border-0 first:pt-0">
-                <p className="text-sm font-semibold text-text-primary">{l.name}</p>
-                <p className="text-xs text-text-secondary">{l.role}</p>
-                <p className="text-sm text-text-secondary mt-1">{l.bio}</p>
-              </div>
-            ))}
-          </div>
-          <div className="bg-white border border-border-card rounded p-5">
-            <h2 className="text-sm font-bold text-text-primary">{aboutContent.certificationsTitle}</h2>
-            <ul className="mt-2 text-sm text-text-secondary space-y-1">
-              {aboutContent.certifications.map((c) => <li key={c}>{c}</li>)}
-            </ul>
-          </div>
-          <div className="bg-white border border-border-card rounded p-5">
-            <h2 className="text-sm font-bold text-text-primary">{aboutContent.dpiitTitle}</h2>
-            <p className="text-sm text-text-secondary mt-2 leading-relaxed">{aboutContent.dpiitBody}</p>
-          </div>
-        </PageContainer>
-      </section>
+      <PageSection tone="muted" containerClassName="space-y-4 max-w-3xl">
+        <PanelCard title={aboutContent.storyTitle}>
+          <p className="type-body">{aboutContent.storyBody}</p>
+        </PanelCard>
+        <PanelCard title={aboutContent.missionTitle}>
+          <p className="type-body">{aboutContent.missionBody}</p>
+        </PanelCard>
+        <PanelCard title={aboutContent.valuesTitle}>
+          <ul className="type-body space-y-1 list-disc list-inside">
+            {aboutContent.values.map((v) => <li key={v}>{v}</li>)}
+          </ul>
+        </PanelCard>
+        <PanelCard title={aboutContent.leadershipTitle}>
+          {aboutContent.leadership.map((l) => (
+            <div key={l.name} className="mt-3 border-t border-line pt-3 first:border-0 first:pt-0 first:mt-0">
+              <p className="type-card-title">{l.name}</p>
+              <p className="type-caption">{l.role}</p>
+              <p className="type-body mt-1">{l.bio}</p>
+            </div>
+          ))}
+        </PanelCard>
+        <PanelCard title={aboutContent.certificationsTitle}>
+          <ul className="type-body space-y-1">
+            {aboutContent.certifications.map((c) => <li key={c}>{c}</li>)}
+          </ul>
+        </PanelCard>
+        <PanelCard title={aboutContent.dpiitTitle}>
+          <p className="type-body">{aboutContent.dpiitBody}</p>
+        </PanelCard>
+      </PageSection>
     </MarketingChrome>
   );
 }

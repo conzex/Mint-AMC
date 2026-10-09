@@ -1,24 +1,22 @@
 import MarketingChrome from '@/components/layout/marketing-chrome';
-import PageContainer from '@/components/layout/page-container';
 import PageHeroBand from '@/components/layout/page-hero-band';
+import PageSection from '@/components/layout/page-section';
+import { PanelCard } from '@/components/ui/panel-card';
 import { termsContent } from '@/content/legal';
 
-export const metadata = { title: '{{META_TERMS_TITLE}}' };
+export const metadata = { title: 'Terms of Service | Mint AMC' };
 
 export default function TermsPage() {
   return (
     <MarketingChrome>
       <PageHeroBand title={termsContent.title} size="compact" align="left" />
-      <section className="py-10 bg-bg-body">
-        <PageContainer className="max-w-3xl space-y-4">
-          {termsContent.sections.map((s) => (
-            <div key={s.heading} className="bg-white border border-border-card rounded p-5">
-              <h2 className="text-sm font-bold text-text-primary">{s.heading}</h2>
-              <p className="text-sm text-text-secondary mt-2 leading-relaxed">{s.body}</p>
-            </div>
-          ))}
-        </PageContainer>
-      </section>
+      <PageSection tone="muted" containerClassName="max-w-3xl space-y-4">
+        {termsContent.sections.map((s) => (
+          <PanelCard key={s.heading} title={s.heading}>
+            <p className="type-body">{s.body}</p>
+          </PanelCard>
+        ))}
+      </PageSection>
     </MarketingChrome>
   );
 }

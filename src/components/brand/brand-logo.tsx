@@ -1,32 +1,33 @@
-import { Leaf } from 'lucide-react';
-import { siteContent } from '@/content/site';
 import { cn } from '@/lib/utils';
 
+export const MINT_AMC_LOGO_URL = 'https://mintamc.com/assets/logo.png';
+
 type BrandLogoProps = {
-  inverted?: boolean;
   className?: string;
+  heightClass?: string;
+  /** Use on deep-slate backgrounds so the logo stays legible. */
+  onDark?: boolean;
 };
 
-/** Matches uidrac header logo container sizing; glyph + wordmark for Mint AMC. */
-export default function BrandLogo({ inverted = false, className }: BrandLogoProps) {
+/** Logo image only — no wordmark. */
+export default function BrandLogo({
+  className,
+  heightClass = 'h-14',
+  onDark = false,
+}: BrandLogoProps) {
+  const img = (
+    <img
+      src={MINT_AMC_LOGO_URL}
+      alt=""
+      className={cn(heightClass, 'w-auto max-w-[min(360px,72vw)] object-contain object-left', className)}
+    />
+  );
+
+  if (!onDark) return img;
+
   return (
-    <span className={cn('flex items-center gap-2.5 shrink-0 min-w-0', className)}>
-      <span
-        className={cn(
-          'w-7 h-7 rounded flex items-center justify-center shrink-0',
-          inverted ? 'bg-white/20 text-white' : 'bg-dell-blue/10 text-dell-blue',
-        )}
-      >
-        <Leaf className="w-4 h-4" aria-hidden />
-      </span>
-      <span
-        className={cn(
-          'text-sm font-semibold tracking-wide truncate',
-          inverted ? 'text-white' : 'text-text-primary',
-        )}
-      >
-        {siteContent.brandName}
-      </span>
+    <span className="inline-block bg-white rounded px-3 py-2 shadow-sm border border-border-card/80">
+      {img}
     </span>
   );
 }

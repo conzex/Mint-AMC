@@ -10,10 +10,10 @@ export function PanelCard({
   className?: string;
 }) {
   return (
-    <div className={cn('bg-white border border-border-card rounded', className)}>
+    <div className={cn('ui-card', className)}>
       {title && (
-        <div className="px-5 py-4 border-b border-border-card">
-          <h2 className="text-sm font-semibold text-text-primary">{title}</h2>
+        <div className="px-5 py-4 border-b border-line">
+          <h2 className="type-card-title">{title}</h2>
         </div>
       )}
       <div className="px-5 py-4">{children}</div>

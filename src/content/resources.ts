@@ -1,34 +1,46 @@
 export const resourcesPageContent = {
-  heroTitle: '{{RESOURCES_HERO_TITLE}}',
-  heroSubtitle: '{{RESOURCES_HERO_SUBTITLE}}',
+  heroTitle: 'Resources',
+  heroSubtitle: 'Guides on AMC planning, SLA design, and operational best practices for IT infrastructure teams.',
 };
 
 export type Article = { slug: string; title: string; excerpt: string; date: string; category: string; body: string[] };
 
 export const articles: Article[] = [
   {
-    slug: 'article-1',
-    title: '{{ARTICLE_TITLE_1}}',
-    excerpt: '{{ARTICLE_EXCERPT_1}}',
-    date: '{{ARTICLE_DATE_1}}',
-    category: '{{ARTICLE_CATEGORY_1}}',
-    body: ['{{ARTICLE_BODY_1_P1}}', '{{ARTICLE_BODY_1_P2}}', '{{ARTICLE_BODY_1_P3}}'],
+    slug: 'it-amc-planning-guide',
+    title: 'IT AMC planning guide',
+    excerpt: 'How to scope assets, SLAs, and commercial models before signing an enterprise AMC.',
+    date: '2026-01-15',
+    category: 'AMC strategy',
+    body: [
+      'Start with an accurate asset register: endpoints, network, servers, storage, and facility systems in scope.',
+      'Align SLA tiers to business impact — not every site needs the same onsite response time.',
+      'Decide early whether comprehensive parts coverage or labour-only fits your opex and risk profile.',
+    ],
   },
   {
-    slug: 'article-2',
-    title: '{{ARTICLE_TITLE_2}}',
-    excerpt: '{{ARTICLE_EXCERPT_2}}',
-    date: '{{ARTICLE_DATE_2}}',
-    category: '{{ARTICLE_CATEGORY_2}}',
-    body: ['{{ARTICLE_BODY_2_P1}}', '{{ARTICLE_BODY_2_P2}}'],
+    slug: 'preventive-vs-breakfix',
+    title: 'Preventive maintenance vs break-fix',
+    excerpt: 'When PM programmes pay off and how to combine them with on-call support.',
+    date: '2026-02-02',
+    category: 'Operations',
+    body: [
+      'Break-fix alone often increases mean time to restore for ageing fleets.',
+      'Preventive maintenance reduces thermal, power, and firmware-related failures when scheduled consistently.',
+      'Hybrid models are common: PM for stable estates, enhanced SLAs for critical tiers.',
+    ],
   },
   {
-    slug: 'article-3',
-    title: '{{ARTICLE_TITLE_3}}',
-    excerpt: '{{ARTICLE_EXCERPT_3}}',
-    date: '{{ARTICLE_DATE_3}}',
-    category: '{{ARTICLE_CATEGORY_3}}',
-    body: ['{{ARTICLE_BODY_3_P1}}', '{{ARTICLE_BODY_3_P2}}'],
+    slug: 'sla-selection-for-it-leaders',
+    title: 'SLA selection for IT leaders',
+    excerpt: 'Practical criteria for response, resolution, and reporting in multi-site AMC.',
+    date: '2026-03-10',
+    category: 'SLA',
+    body: [
+      'Define measurable targets: acknowledgement, remote engagement, onsite arrival, and restoration.',
+      'Include escalation paths and executive notification for P1 events.',
+      'Review SLA reports quarterly and adjust tiers when the estate or risk profile changes.',
+    ],
   },
 ];
 

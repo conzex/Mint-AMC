@@ -1,11 +1,14 @@
-import Link from 'next/link';
 import { Activity, ArrowRight } from 'lucide-react';
 import MarketingChrome from '@/components/layout/marketing-chrome';
 import PageContainer from '@/components/layout/page-container';
 import PageHeroBand, { MarketingCtaBand } from '@/components/layout/page-hero-band';
-import { heroCtaBtnClass, heroCtaGroupClass } from '@/lib/marketing-cta';
+import PageSection from '@/components/layout/page-section';
+import { heroCtaGroupClass } from '@/lib/marketing-cta';
 import { homeContent } from '@/content/home';
 import { megaMenuColumns } from '@/content/mega-menu';
+import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
+import { TextLink } from '@/components/ui/text-link';
 
 export default function HomePage() {
   return (
@@ -13,116 +16,115 @@ export default function HomePage() {
       <PageHeroBand
         size="large"
         badge={
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-medium mb-6 border border-white/20">
-            <Activity className="w-3 h-3" /> {homeContent.heroBadge}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-subtle rounded-full type-eyebrow mb-6 border border-accent/30">
+            <Icon icon={Activity} size="xs" className="text-accent" />
+            {homeContent.heroBadge}
           </div>
         }
         title={homeContent.heroHeadline}
         subtitle={homeContent.heroSubheadline}
       >
         <div className={heroCtaGroupClass}>
-          <Link href="/contact" className={`${heroCtaBtnClass} bg-white text-dell-blue hover:bg-white/90 shadow-lg shadow-black/10`}>
-            {homeContent.heroPrimaryCta} <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link href="/services" className={`${heroCtaBtnClass} bg-white/10 text-white hover:bg-white/20 border border-white/25 backdrop-blur-sm`}>
+          <Button href="/contact" size="md" className="w-full">
+            {homeContent.heroPrimaryCta}
+            <Icon icon={ArrowRight} size="sm" />
+          </Button>
+          <Button href="/services" variant="secondary" size="md" className="w-full">
             {homeContent.heroSecondaryCta}
-          </Link>
+          </Button>
         </div>
       </PageHeroBand>
 
-      <section className="bg-white border-b border-border-card">
+      <section className="bg-surface border-b border-line">
         <PageContainer>
-          <div className="py-4 flex flex-wrap gap-4 justify-center text-xs text-text-secondary">
+          <div className="py-4 flex flex-wrap gap-x-6 gap-y-2 justify-center type-caption font-medium">
             {homeContent.trustItems.map((t) => (
-              <span key={t} className="font-medium">{t}</span>
+              <span key={t}>{t}</span>
             ))}
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border-card border border-border-card rounded overflow-hidden mb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded overflow-hidden mb-6">
             {homeContent.metrics.map((s) => (
-              <div key={s.label} className="bg-white py-6 sm:py-7 px-4 sm:px-5">
-                <div className="text-xl sm:text-2xl font-bold text-dell-blue tabular-nums">{s.value}</div>
-                <div className="text-sm font-medium text-text-primary mt-1">{s.label}</div>
-                <div className="text-xs text-text-secondary">{s.sub}</div>
+              <div key={s.label} className="bg-surface py-6 sm:py-7 px-4 sm:px-5">
+                <div className="text-xl sm:text-2xl font-bold text-brand tabular-nums">{s.value}</div>
+                <div className="text-sm font-semibold text-ink mt-1">{s.label}</div>
+                <div className="type-caption">{s.sub}</div>
               </div>
             ))}
           </div>
         </PageContainer>
       </section>
 
-      <section className="py-12 sm:py-14 bg-bg-body">
-        <PageContainer>
-          <div className="max-w-xl mb-8">
-            <h2 className="text-lg sm:text-xl font-bold text-text-primary">{homeContent.servicesSectionTitle}</h2>
-            <p className="text-sm text-text-secondary mt-2 leading-relaxed">{homeContent.servicesSectionBody}</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {megaMenuColumns.map((col) => (
-              <div key={col.id} className="flex gap-4 bg-white border border-border-card rounded p-5">
-                <div className="w-10 h-10 rounded bg-dell-blue/10 text-dell-blue flex items-center justify-center shrink-0">
-                  <col.icon className="w-5 h-5" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-sm font-semibold text-text-primary">{col.heading}</h3>
-                  <ul className="mt-2 text-sm text-text-secondary space-y-1">
-                    {col.links.slice(0, 3).map((l) => (
-                      <li key={l.slug}>
-                        <Link href={`/services/${l.slug}`} className="text-dell-blue hover:underline">{l.label}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+      <PageSection tone="muted">
+        <div className="max-w-xl mb-8">
+          <h2 className="type-section-title">{homeContent.servicesSectionTitle}</h2>
+          <p className="type-body mt-2">{homeContent.servicesSectionBody}</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {megaMenuColumns.map((col) => (
+            <div key={col.id} className="ui-card p-5 flex gap-4">
+              <div className="w-10 h-10 rounded bg-brand-subtle text-accent flex items-center justify-center shrink-0">
+                <Icon icon={col.icon} size="md" />
               </div>
-            ))}
-          </div>
-        </PageContainer>
-      </section>
+              <div className="min-w-0">
+                <h3 className="type-card-title">{col.heading}</h3>
+                <ul className="mt-2 type-body space-y-1">
+                  {col.links.slice(0, 3).map((l) => (
+                    <li key={l.slug}>
+                      <TextLink href={`/services/${l.slug}`} className="font-medium">
+                        {l.label}
+                      </TextLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </PageSection>
 
-      <section className="py-12 sm:py-14 bg-white border-t border-border-card">
-        <PageContainer>
-          <h2 className="text-lg sm:text-xl font-bold text-text-primary mb-4">{homeContent.howItWorksTitle}</h2>
-          <ol className="grid sm:grid-cols-2 gap-3 text-sm text-text-secondary list-decimal list-inside">
-            {homeContent.howItWorksSteps.map((step) => (
-              <li key={step} className="bg-bg-body border border-border-card rounded p-4">{step}</li>
-            ))}
-          </ol>
-        </PageContainer>
-      </section>
+      <PageSection tone="white" borderTop>
+        <h2 className="type-section-title mb-4">{homeContent.howItWorksTitle}</h2>
+        <ol className="grid sm:grid-cols-2 gap-3 type-body list-decimal list-inside">
+          {homeContent.howItWorksSteps.map((step) => (
+            <li key={step} className="ui-card p-4 list-item">{step}</li>
+          ))}
+        </ol>
+      </PageSection>
 
-      <section className="py-12 sm:py-14 bg-bg-body">
-        <PageContainer className="grid lg:grid-cols-2 gap-6">
+      <PageSection tone="muted">
+        <div className="grid lg:grid-cols-2 gap-6">
           <div>
-            <h2 className="text-lg sm:text-xl font-bold text-text-primary">{homeContent.whyUsTitle}</h2>
-            <p className="text-sm text-text-secondary mt-2 leading-relaxed">{homeContent.whyUsBody}</p>
-            <ul className="mt-4 space-y-2 text-sm text-text-secondary">
+            <h2 className="type-section-title">{homeContent.whyUsTitle}</h2>
+            <p className="type-body mt-2">{homeContent.whyUsBody}</p>
+            <ul className="mt-4 space-y-2 type-body">
               {homeContent.whyUsPoints.map((p) => (
-                <li key={p} className="border-l-2 border-dell-blue pl-3">{p}</li>
+                <li key={p} className="border-l-2 border-accent pl-3">{p}</li>
               ))}
             </ul>
           </div>
           <div>
-            <h2 className="text-lg sm:text-xl font-bold text-text-primary mb-4">{homeContent.testimonialsTitle}</h2>
+            <h2 className="type-section-title mb-4">{homeContent.testimonialsTitle}</h2>
             {homeContent.testimonials.map((t) => (
-              <div key={t.client} className="bg-white border border-border-card rounded p-5 mb-3">
-                <p className="text-sm text-text-secondary leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
-                <p className="mt-2 text-xs font-semibold text-text-primary">{t.client}</p>
-                <p className="text-xs text-text-secondary">{t.role}</p>
+              <div key={t.client} className="ui-card p-5 mb-3">
+                <p className="type-body">&ldquo;{t.quote}&rdquo;</p>
+                <p className="mt-2 text-xs font-semibold text-ink">{t.client}</p>
+                <p className="type-caption">{t.role}</p>
               </div>
             ))}
           </div>
-        </PageContainer>
-      </section>
+        </div>
+      </PageSection>
 
-      <section className="py-12 bg-white border-t border-border-card">
-        <PageContainer>
-          <h2 className="text-lg font-bold text-text-primary">{homeContent.coverageTitle}</h2>
-          <p className="text-sm text-text-secondary mt-2 max-w-2xl leading-relaxed">{homeContent.coverageBody}</p>
-        </PageContainer>
-      </section>
+      <PageSection tone="white" borderTop className="py-12">
+        <h2 className="type-section-title">{homeContent.coverageTitle}</h2>
+        <p className="type-body mt-2 max-w-2xl">{homeContent.coverageBody}</p>
+      </PageSection>
 
       <MarketingCtaBand title={homeContent.ctaTitle} subtitle={homeContent.ctaSubtitle}>
-        <Link href="/contact" className={`${heroCtaBtnClass} bg-white text-dell-blue hover:bg-white/90 mx-auto max-w-xs`}>
-          {homeContent.ctaButton} <ArrowRight className="w-4 h-4" />
-        </Link>
+        <Button href="/contact" size="md" className="mx-auto max-w-xs w-full">
+          {homeContent.ctaButton}
+          <Icon icon={ArrowRight} size="sm" />
+        </Button>
       </MarketingCtaBand>
     </MarketingChrome>
   );

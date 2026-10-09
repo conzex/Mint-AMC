@@ -1,20 +1,16 @@
-import Link from 'next/link';
 import MarketingChrome from '@/components/layout/marketing-chrome';
-import PageContainer from '@/components/layout/page-container';
+import PageSection from '@/components/layout/page-section';
 import { notFoundContent } from '@/content/not-found';
+import { Button } from '@/components/ui/button';
 
 export default function NotFound() {
   return (
     <MarketingChrome>
-      <section className="py-20 bg-bg-body">
-        <PageContainer className="text-center max-w-lg">
-          <h1 className="text-2xl font-bold text-text-primary">{notFoundContent.title}</h1>
-          <p className="text-sm text-text-secondary mt-2">{notFoundContent.body}</p>
-          <Link href="/" className="mt-6 inline-flex bg-dell-blue text-white text-sm font-semibold px-4 py-2 rounded hover:bg-dell-blue-hover">
-            {notFoundContent.cta}
-          </Link>
-        </PageContainer>
-      </section>
+      <PageSection tone="muted" className="py-20" containerClassName="text-center max-w-lg">
+        <h1 className="type-page-title">{notFoundContent.title}</h1>
+        <p className="type-body mt-2">{notFoundContent.body}</p>
+        <Button href="/" className="mt-6">{notFoundContent.cta}</Button>
+      </PageSection>
     </MarketingChrome>
   );
 }

@@ -1,40 +1,35 @@
-import Link from 'next/link';
 import MarketingChrome from '@/components/layout/marketing-chrome';
-import PageContainer from '@/components/layout/page-container';
 import PageHeroBand from '@/components/layout/page-hero-band';
+import PageSection from '@/components/layout/page-section';
 import { megaMenuColumns } from '@/content/mega-menu';
-import { getService, servicesPageContent } from '@/content/services';
+import { Icon } from '@/components/ui/icon';
+import { TextLink } from '@/components/ui/text-link';
 
-export const metadata = { title: '{{META_SERVICES_TITLE}}' };
+export const metadata = { title: 'Services | Mint AMC' };
 
 export default function ServicesPage() {
   return (
     <MarketingChrome>
-      <PageHeroBand title={servicesPageContent.heroTitle} subtitle={servicesPageContent.heroSubtitle} align="left" />
-      <section className="py-12 bg-bg-body">
-        <PageContainer>
-          <div className="grid lg:grid-cols-2 gap-6">
-            {megaMenuColumns.map((col) => (
-              <div key={col.id} className="bg-white border border-border-card rounded p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <col.icon className="w-5 h-5 text-dell-blue" />
-                  <h2 className="text-sm font-bold text-text-primary">{col.heading}</h2>
-                </div>
-                <ul className="space-y-2 text-sm">
-                  {col.links.map((link) => (
-                    <li key={link.slug}>
-                      <Link href={`/services/${link.slug}`} className="text-dell-blue font-semibold hover:underline">
-                        {link.label}
-                      </Link>
-                      <p className="text-xs text-text-secondary mt-0.5">{getService(link.slug)?.shortDescription}</p>
-                    </li>
-                  ))}
-                </ul>
+      <PageHeroBand title="IT AMC services" subtitle="Structured annual maintenance across end-user, network, infrastructure, and monitoring portfolios." align="left" />
+      <PageSection tone="muted">
+        <div className="grid sm:grid-cols-2 gap-4">
+          {megaMenuColumns.map((col) => (
+            <div key={col.id} className="ui-card p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <Icon icon={col.icon} size="md" className="text-accent" />
+                <h2 className="type-card-title">{col.heading}</h2>
               </div>
-            ))}
-          </div>
-        </PageContainer>
-      </section>
+              <ul className="space-y-2 type-body">
+                {col.links.map((link) => (
+                  <li key={link.slug}>
+                    <TextLink href={`/services/${link.slug}`}>{link.label}</TextLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </PageSection>
     </MarketingChrome>
   );
 }

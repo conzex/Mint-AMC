@@ -2,9 +2,6 @@ import type { ReactNode } from 'react';
 import { PAGE_CONTAINER_CLASS } from './page-container';
 import { cn } from '@/lib/utils';
 
-export const MARKETING_HERO_BG_URL =
-  'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80&auto=format&fit=crop';
-
 export type PageHeroBandProps = {
   title: ReactNode;
   subtitle?: ReactNode;
@@ -24,26 +21,17 @@ export default function PageHeroBand({
   children,
   className,
 }: PageHeroBandProps) {
-  const py = size === 'large' ? 'py-20 sm:py-28 lg:py-32' : 'py-10 sm:py-12 lg:py-14';
+  const py = size === 'large' ? 'py-14 sm:py-16 lg:py-20' : 'py-10 sm:py-12';
 
   return (
-    <section className={cn('relative text-white overflow-hidden bg-dell-dark shrink-0', className)}>
+    <section
+      className={cn(
+        'relative shrink-0 border-b border-line bg-surface',
+        className,
+      )}
+    >
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${MARKETING_HERO_BG_URL})` }}
-        aria-hidden
-      />
-      <div className="absolute inset-0 bg-dell-dark/80" aria-hidden />
-      <div
-        className="absolute inset-0 bg-gradient-to-br from-dell-blue/85 via-dell-blue/65 to-dell-dark/95"
-        aria-hidden
-      />
-      <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-          backgroundSize: '32px 32px',
-        }}
+        className="absolute inset-0 bg-gradient-to-b from-surface via-brand-subtle/40 to-surface pointer-events-none"
         aria-hidden
       />
       <div className={cn('relative', PAGE_CONTAINER_CLASS, py)}>
@@ -51,8 +39,7 @@ export default function PageHeroBand({
           {badge}
           <h1
             className={cn(
-              'font-bold tracking-tight leading-tight text-white',
-              size === 'large' ? 'text-3xl sm:text-4xl lg:text-5xl mb-5' : 'text-2xl sm:text-3xl mb-2',
+              size === 'large' ? 'type-display mb-5' : 'type-page-title mb-2',
             )}
           >
             {title}
@@ -60,9 +47,10 @@ export default function PageHeroBand({
           {subtitle && (
             <p
               className={cn(
-                'text-white/70 leading-relaxed',
-                size === 'large' ? 'text-base sm:text-lg max-w-2xl mx-auto mb-8' : 'text-sm sm:text-base max-w-2xl',
-                align === 'center' && subtitle && size !== 'large' && 'mx-auto',
+                'type-body',
+                size === 'large' ? 'text-base sm:text-lg max-w-2xl mx-auto mb-8' : 'max-w-2xl',
+                align === 'center' && size === 'large' && 'mx-auto',
+                align === 'center' && size !== 'large' && 'mx-auto',
               )}
             >
               {subtitle}
@@ -85,19 +73,11 @@ export function MarketingCtaBand({
   children: ReactNode;
 }) {
   return (
-    <section className="relative bg-gradient-to-br from-dell-blue to-dell-dark text-white overflow-hidden shrink-0">
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-          backgroundSize: '32px 32px',
-        }}
-        aria-hidden
-      />
+    <section className="relative border-t border-line bg-brand-subtle/50 overflow-hidden shrink-0">
       <div className={cn('relative', PAGE_CONTAINER_CLASS, 'py-14 sm:py-16 text-center')}>
         <div className="max-w-lg mx-auto">
-          <h2 className="text-lg sm:text-xl font-bold mb-2">{title}</h2>
-          {subtitle && <p className="text-sm text-white/70 mb-6">{subtitle}</p>}
+          <h2 className="type-section-title mb-2">{title}</h2>
+          {subtitle && <p className="type-body mb-6">{subtitle}</p>}
           {children}
         </div>
       </div>

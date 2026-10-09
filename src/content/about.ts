@@ -1,19 +1,34 @@
 export const aboutContent = {
-  heroTitle: '{{ABOUT_HERO_TITLE}}',
-  heroSubtitle: '{{ABOUT_HERO_SUBTITLE}}',
-  storyTitle: '{{ABOUT_STORY_TITLE}}',
-  storyBody: '{{ABOUT_STORY_BODY}}',
-  missionTitle: '{{ABOUT_MISSION_TITLE}}',
-  missionBody: '{{ABOUT_MISSION_BODY}}',
-  valuesTitle: '{{ABOUT_VALUES_TITLE}}',
-  values: ['{{ABOUT_VALUE_1}}', '{{ABOUT_VALUE_2}}', '{{ABOUT_VALUE_3}}'],
-  leadershipTitle: '{{ABOUT_LEADERSHIP_TITLE}}',
-  leadership: [
-    { name: '{{LEADER_NAME_1}}', role: '{{LEADER_ROLE_1}}', bio: '{{LEADER_BIO_1}}' },
-    { name: '{{LEADER_NAME_2}}', role: '{{LEADER_ROLE_2}}', bio: '{{LEADER_BIO_2}}' },
+  heroTitle: 'About Mint AMC',
+  heroSubtitle:
+    'We deliver IT Annual Maintenance Contracts and managed support as a focused division of CONZEX GLOBAL PRIVATE LIMITED — combining field engineering with operations discipline.',
+  storyTitle: 'Our story',
+  storyBody:
+    'Mint AMC was created to give enterprises a single, accountable partner for heterogeneous IT estates: endpoints, networks, servers, data centre facilities, and monitoring. We align commercial AMC structures with how IT teams actually run — multi-site, mixed OEM, and SLA-driven.',
+  missionTitle: 'Mission',
+  missionBody:
+    'Reduce unplanned downtime and commercial risk through preventive maintenance, transparent SLAs, and measurable service governance.',
+  valuesTitle: 'Values',
+  values: [
+    'Accountability — one contract owner, clear escalation',
+    'Transparency — reporting you can share with leadership and auditors',
+    'Operational rigour — PM schedules, spares policy, and NOC integration',
   ],
-  certificationsTitle: '{{ABOUT_CERTIFICATIONS_TITLE}}',
-  certifications: ['{{CERTIFICATION_1}}', '{{CERTIFICATION_2}}', '{{CERTIFICATION_3}}'],
-  dpiitTitle: '{{ABOUT_DPIIT_TITLE}}',
-  dpiitBody: '{{ABOUT_DPIIT_BODY}}',
+  leadershipTitle: 'Leadership',
+  leadership: [
+    {
+      name: 'Conzex Global leadership team',
+      role: 'Parent company governance',
+      bio: 'Mint AMC operates under the board and compliance framework of CONZEX GLOBAL PRIVATE LIMITED, with shared practices for security, vendor management, and customer success.',
+    },
+  ],
+  certificationsTitle: 'Standards & practices',
+  certifications: [
+    'ITIL-aligned service management processes',
+    'OEM-coordinated spare parts and warranty handling',
+    'Documented change and incident records for audit trails',
+  ],
+  dpiitTitle: 'DPIIT recognition',
+  dpiitBody:
+    'Mint AMC benefits from the startup ecosystem credentials of CONZEX GLOBAL PRIVATE LIMITED as a DPIIT-recognised organisation, supporting innovation in infrastructure and managed services delivery.',
 };

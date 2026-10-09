@@ -1,20 +1,61 @@
 export const solutionsContent = {
-  heroTitle: '{{SOLUTIONS_HERO_TITLE}}',
-  heroSubtitle: '{{SOLUTIONS_HERO_SUBTITLE}}',
-  byIndustryTitle: '{{SOLUTIONS_BY_INDUSTRY_TITLE}}',
+  heroTitle: 'Solutions by industry and by need',
+  heroSubtitle:
+    'Whether you run a single office or a national estate, Mint AMC maps AMC scope, SLAs, and monitoring to your risk profile.',
+  byIndustryTitle: 'By industry',
   industries: [
-    { id: 'smb', title: '{{SOLUTION_INDUSTRY_SMB}}', body: '{{SOLUTION_INDUSTRY_SMB_BODY}}' },
-    { id: 'enterprise', title: '{{SOLUTION_INDUSTRY_ENTERPRISE}}', body: '{{SOLUTION_INDUSTRY_ENTERPRISE_BODY}}' },
-    { id: 'government', title: '{{SOLUTION_INDUSTRY_GOVERNMENT}}', body: '{{SOLUTION_INDUSTRY_GOVERNMENT_BODY}}' },
-    { id: 'healthcare', title: '{{SOLUTION_INDUSTRY_HEALTHCARE}}', body: '{{SOLUTION_INDUSTRY_HEALTHCARE_BODY}}' },
-    { id: 'education', title: '{{SOLUTION_INDUSTRY_EDUCATION}}', body: '{{SOLUTION_INDUSTRY_EDUCATION_BODY}}' },
-    { id: 'bfsi', title: '{{SOLUTION_INDUSTRY_BFSI}}', body: '{{SOLUTION_INDUSTRY_BFSI_BODY}}' },
+    {
+      id: 'smb',
+      title: 'SMB & branch offices',
+      body: 'Right-sized Essential and Professional tiers with NBD onsite and centralised helpdesk for distributed branches.',
+    },
+    {
+      id: 'enterprise',
+      title: 'Enterprise multi-site',
+      body: 'Unified master agreement, per-site SLA tiers, spares logistics, and executive reporting across regions.',
+    },
+    {
+      id: 'government',
+      title: 'Government & PSU',
+      body: 'Compliance-friendly documentation, defined escalation, and transparent commercial structures for tender alignment.',
+    },
+    {
+      id: 'healthcare',
+      title: 'Healthcare',
+      body: 'Uptime-focused network and endpoint AMC with optional 24/7 monitoring for clinical and administrative systems.',
+    },
+    {
+      id: 'education',
+      title: 'Education',
+      body: 'Lab, classroom, and campus WiFi programmes with predictable PM during academic calendars.',
+    },
+    {
+      id: 'bfsi',
+      title: 'BFSI',
+      body: 'Higher SLA tiers, security coordination, and DR-aware support models for regulated environments.',
+    },
   ],
-  byNeedTitle: '{{SOLUTIONS_BY_NEED_TITLE}}',
+  byNeedTitle: 'By need',
   needs: [
-    { id: 'break-fix', title: '{{SOLUTION_NEED_BREAK_FIX}}', body: '{{SOLUTION_NEED_BREAK_FIX_BODY}}' },
-    { id: 'preventive', title: '{{SOLUTION_NEED_PREVENTIVE}}', body: '{{SOLUTION_NEED_PREVENTIVE_BODY}}' },
-    { id: 'comprehensive', title: '{{SOLUTION_NEED_COMPREHENSIVE}}', body: '{{SOLUTION_NEED_COMPREHENSIVE_BODY}}' },
-    { id: 'remote-hands', title: '{{SOLUTION_NEED_REMOTE_HANDS}}', body: '{{SOLUTION_NEED_REMOTE_HANDS_BODY}}' },
+    {
+      id: 'break-fix',
+      title: 'Break-fix & on-call',
+      body: 'Reactive support with defined response times when you do not require full comprehensive coverage.',
+    },
+    {
+      id: 'preventive',
+      title: 'Preventive maintenance',
+      body: 'Scheduled PM to reduce failure rates on servers, network, power, and cooling systems.',
+    },
+    {
+      id: 'comprehensive',
+      title: 'Comprehensive AMC',
+      body: 'Labour plus parts for covered failures — predictable opex for finance and IT leadership.',
+    },
+    {
+      id: 'remote-hands',
+      title: 'Remote hands',
+      body: 'Datacentre smart hands, guided tasks, and coordination with your internal or colocation teams.',
+    },
   ],
 };
