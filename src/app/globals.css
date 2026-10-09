@@ -9,8 +9,8 @@
   --ink: #2c3135;
   --ink-muted: #5c6166;
   --surface: #ffffff;
-  --surface-muted: #ebf2ee;
-  --line: #d4dbd7;
+  --surface-muted: #f4f6f5;
+  --line: #e2e8e4;
 }
 
 @layer base {
@@ -35,27 +35,35 @@
 
 @layer components {
   .type-display {
-    @apply text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-ink leading-[1.15];
+    @apply text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl font-bold tracking-tight text-ink leading-[1.08];
   }
 
   .type-page-title {
-    @apply text-2xl sm:text-3xl font-bold tracking-tight text-ink;
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-ink leading-tight;
   }
 
   .type-section-title {
-    @apply text-lg sm:text-xl font-bold text-ink;
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-ink leading-tight;
+  }
+
+  .type-section-lead {
+    @apply text-base sm:text-lg text-ink-muted leading-relaxed;
+  }
+
+  .type-hero-lead {
+    @apply text-base sm:text-lg lg:text-xl text-ink-muted leading-relaxed max-w-2xl;
   }
 
   .type-card-title {
-    @apply text-sm font-semibold text-ink;
+    @apply text-base font-semibold text-ink;
   }
 
   .type-body {
-    @apply text-sm text-ink-muted leading-relaxed;
+    @apply text-sm sm:text-base text-ink-muted leading-relaxed;
   }
 
   .type-caption {
-    @apply text-xs text-ink-muted;
+    @apply text-xs sm:text-sm text-ink-muted;
   }
 
   .type-eyebrow {
@@ -63,11 +71,19 @@
   }
 
   .ui-card {
-    @apply bg-surface border border-line rounded shadow-card;
+    @apply bg-surface border border-line/80 rounded-xl shadow-card;
+  }
+
+  .ui-card-interactive {
+    @apply bg-surface border border-line/80 rounded-xl shadow-card transition-all duration-300 hover:border-brand/20 hover:-translate-y-0.5;
+  }
+
+  .ui-card-interactive:hover {
+    box-shadow: 0 12px 40px rgba(44, 49, 53, 0.12);
   }
 
   .ui-table-wrap {
-    @apply border border-line rounded overflow-hidden bg-surface;
+    @apply border border-line rounded-xl overflow-hidden bg-surface shadow-card;
   }
 
   .ui-table {
@@ -75,11 +91,11 @@
   }
 
   .ui-table thead tr {
-    @apply bg-card-header border-b border-line text-left;
+    @apply bg-surface-muted border-b border-line text-left;
   }
 
   .ui-table th {
-    @apply p-3 font-semibold text-ink;
+    @apply p-4 font-semibold text-ink;
   }
 
   .ui-table tbody {
@@ -87,7 +103,7 @@
   }
 
   .ui-table td {
-    @apply p-3 text-ink-muted;
+    @apply p-4 text-ink-muted;
   }
 
   .ui-table tbody tr {
@@ -95,6 +111,6 @@
   }
 
   .ui-input {
-    @apply w-full px-3 py-2 border border-line rounded text-sm text-ink bg-surface placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-brand/25;
+    @apply w-full px-3 py-2.5 border border-line rounded-lg text-sm text-ink bg-surface placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-brand/25;
   }
 }

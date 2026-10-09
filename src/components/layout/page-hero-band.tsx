@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { MINT_AMC_HERO_BG_URL } from '@/components/brand/brand-logo';
 import { PAGE_CONTAINER_CLASS } from './page-container';
 import { cn } from '@/lib/utils';
 
@@ -10,6 +11,7 @@ export type PageHeroBandProps = {
   align?: 'center' | 'left';
   children?: ReactNode;
   className?: string;
+  heroBackground?: boolean;
 };
 
 export default function PageHeroBand({
@@ -20,37 +22,61 @@ export default function PageHeroBand({
   align = 'center',
   children,
   className,
+  heroBackground,
 }: PageHeroBandProps) {
-  const py = size === 'large' ? 'py-14 sm:py-16 lg:py-20' : 'py-10 sm:py-12';
+  const isLarge = size === 'large';
+  const showHeroBg = heroBackground ?? isLarge;
 
   return (
     <section
       className={cn(
-        'relative shrink-0 border-b border-line bg-surface',
+        'relative shrink-0 border-b border-line bg-surface overflow-hidden flex flex-col justify-center',
+        isLarge ? 'min-h-[min(88vh,920px)]' : 'min-h-[220px] sm:min-h-[260px]',
         className,
       )}
     >
+      {showHeroBg ? (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
+            style={{ backgroundImage: `url("${MINT_AMC_HERO_BG_URL}")` }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/75 to-white/40 pointer-events-none"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent pointer-events-none"
+            aria-hidden
+          />
+        </>
+      ) : (
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-surface via-brand-subtle/30 to-surface pointer-events-none"
+          aria-hidden
+        />
+      )}
       <div
-        className="absolute inset-0 bg-gradient-to-b from-surface via-brand-subtle/40 to-surface pointer-events-none"
-        aria-hidden
-      />
-      <div className={cn('relative', PAGE_CONTAINER_CLASS, py)}>
-        <div className={cn('max-w-3xl', align === 'center' && 'mx-auto text-center')}>
+        className={cn(
+          'relative w-full',
+          PAGE_CONTAINER_CLASS,
+          isLarge ? 'py-16 sm:py-20 lg:py-24' : 'py-12 sm:py-14',
+        )}
+      >
+        <div
+          className={cn(
+            isLarge ? 'max-w-4xl' : 'max-w-3xl',
+            align === 'center' && 'mx-auto text-center',
+          )}
+        >
           {badge}
-          <h1
-            className={cn(
-              size === 'large' ? 'type-display mb-5' : 'type-page-title mb-2',
-            )}
-          >
-            {title}
-          </h1>
+          <h1 className={cn(isLarge ? 'type-display mb-6' : 'type-page-title mb-3')}>{title}</h1>
           {subtitle && (
             <p
               className={cn(
-                'type-body',
-                size === 'large' ? 'text-base sm:text-lg max-w-2xl mx-auto mb-8' : 'max-w-2xl',
-                align === 'center' && size === 'large' && 'mx-auto',
-                align === 'center' && size !== 'large' && 'mx-auto',
+                isLarge ? 'type-hero-lead mb-10' : 'type-body max-w-2xl',
+                align === 'center' && 'mx-auto',
               )}
             >
               {subtitle}
@@ -73,11 +99,15 @@ export function MarketingCtaBand({
   children: ReactNode;
 }) {
   return (
-    <section className="relative border-t border-line bg-brand-subtle/50 overflow-hidden shrink-0">
-      <div className={cn('relative', PAGE_CONTAINER_CLASS, 'py-14 sm:py-16 text-center')}>
-        <div className="max-w-lg mx-auto">
-          <h2 className="type-section-title mb-2">{title}</h2>
-          {subtitle && <p className="type-body mb-6">{subtitle}</p>}
+    <section className="relative border-t border-line bg-ink text-white overflow-hidden shrink-0">
+      <div
+        className="absolute inset-0 opacity-40 bg-gradient-to-br from-brand via-ink to-ink pointer-events-none"
+        aria-hidden
+      />
+      <div className={cn('relative', PAGE_CONTAINER_CLASS, 'py-20 sm:py-24 text-center')}>
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-4">{title}</h2>
+          {subtitle && <p className="text-base sm:text-lg text-white/80 mb-8 leading-relaxed">{subtitle}</p>}
           {children}
         </div>
       </div>

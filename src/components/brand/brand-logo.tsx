@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 
 export const MINT_AMC_LOGO_URL = 'https://mintamc.com/assets/logo.png';
+export const MINT_AMC_HERO_BG_URL = 'https://mintamc.com/assets/hero-bg.png';
 
 type BrandLogoProps = {
   className?: string;

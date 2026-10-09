@@ -1,8 +1,8 @@
 export const homeContent = {
   heroBadge: 'DPIIT-recognised · PAN-India IT AMC',
-  heroHeadline: 'Enterprise IT Annual Maintenance Contracts',
+  heroHeadline: 'The operating model for enterprise IT maintenance',
   heroSubheadline:
-    'Comprehensive AMC for desktops, networks, servers, data centre infrastructure, and 24/7 NOC monitoring — operated by Mint AMC, a division of CONZEX GLOBAL PRIVATE LIMITED.',
+    'From branch desktops to data centre infrastructure — one AMC programme, contractual SLAs, and optional 24/7 NOC. Mint AMC is a division of CONZEX GLOBAL PRIVATE LIMITED.',
   heroPrimaryCta: 'Request assessment',
   heroSecondaryCta: 'Explore services',
   trustItems: [
@@ -11,16 +11,41 @@ export const homeContent = {
     'Comprehensive & non-comprehensive AMC options',
     '24/7 remote monitoring (NOC)',
   ],
+  outcomesTitle: 'How can we help you run infrastructure with confidence?',
+  outcomesLead:
+    'Every IT estate is different. Start with the outcome you need today — and scale onto one AMC partner as sites and asset classes grow.',
+  outcomeCards: [
+    {
+      title: 'Consolidate multi-site AMC',
+      body: 'One contract across desktops, network, servers, and peripherals — with a single escalation path and unified reporting.',
+      href: '/services',
+    },
+    {
+      title: 'Meet strict response SLAs',
+      body: 'Contractual NBD to 4-hour onsite tiers in major metros, with spare-parts logistics aligned to your coverage model.',
+      href: '/why-mint-amc',
+    },
+    {
+      title: 'Add 24/7 NOC visibility',
+      body: 'Optional remote monitoring and alert routing so operations teams see issues before users do.',
+      href: '/services/monitoring-noc',
+    },
+    {
+      title: 'Plan predictable IT spend',
+      body: 'Transparent per-device or site bundles — comprehensive or labour-only — without surprise break-fix spikes.',
+      href: '/pricing',
+    },
+  ],
   metrics: [
     { value: '17+', label: 'AMC service lines', sub: 'End-user to data centre' },
     { value: '24×7', label: 'NOC monitoring', sub: 'Optional on all tiers' },
     { value: '4hr', label: 'Priority onsite SLA', sub: 'Metro & major hubs' },
     { value: 'PAN-India', label: 'Service coverage', sub: 'Multi-location enterprises' },
   ],
-  servicesSectionTitle: 'Complete IT infrastructure AMC portfolio',
+  servicesSectionTitle: 'One portfolio across your entire stack',
   servicesSectionBody:
-    'Discover structured AMC programmes across end-user devices, network & communication, infrastructure & data centre, and managed monitoring services.',
-  howItWorksTitle: 'How Mint AMC works',
+    'Structured AMC programmes for end-user devices, network & communication, infrastructure & data centre, and managed monitoring.',
+  howItWorksTitle: 'From assessment to governed operations',
   howItWorksSteps: [
     'Infrastructure assessment and asset baseline across your sites',
     'AMC scope, SLA tier, and commercial proposal aligned to your environment',
@@ -29,13 +54,13 @@ export const homeContent = {
   ],
   whyUsTitle: 'Why enterprises choose Mint AMC',
   whyUsBody:
-    'Mint AMC combines field engineering, OEM-aligned parts management, and operations visibility under one contract — backed by Conzex group infrastructure expertise.',
+    'Field engineering, OEM-aligned parts management, and operations visibility under one contract — backed by Conzex group infrastructure expertise.',
   whyUsPoints: [
     'Single contract across heterogeneous IT assets and locations',
     'Transparent SLAs with escalation paths to NOC and leadership',
     'Parent company scale with startup agility (DPIIT recognition via Conzex Global)',
   ],
-  testimonialsTitle: 'What IT teams value',
+  testimonialsTitle: 'Outcomes IT leaders care about',
   testimonials: [
     {
       quote:
@@ -53,7 +78,7 @@ export const homeContent = {
   coverageTitle: 'PAN-India service coverage',
   coverageBody:
     'Mint AMC coordinates onsite engineers and authorised partners across major metros and industrial clusters. Contact us to confirm SLA and parts logistics for your PIN codes and site list.',
-  ctaTitle: 'Ready to structure your AMC programme?',
-  ctaSubtitle: 'Speak with a Mint AMC specialist about scope, SLAs, and PAN-India coverage for your environment.',
+  ctaTitle: 'Pick your starting point. We’ll meet you there.',
+  ctaSubtitle: 'Speak with a Mint AMC specialist about scope, SLAs, and coverage for your environment.',
   ctaButton: 'Request custom quote',
 };

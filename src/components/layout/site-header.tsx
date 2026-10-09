@@ -36,8 +36,8 @@ export default function SiteHeader() {
 
   const navLinkClass = (href: string) => {
     const active = pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
-    return `whitespace-nowrap transition-colors text-sm ${
-      active ? 'text-brand font-semibold' : 'text-ink-muted hover:text-brand'
+    return `whitespace-nowrap transition-colors text-[15px] ${
+      active ? 'text-brand font-semibold' : 'text-ink-muted hover:text-ink'
     }`;
   };
 
@@ -50,14 +50,14 @@ export default function SiteHeader() {
   ];
 
   return (
-    <header className="bg-surface text-ink shrink-0 sticky top-0 z-50 shadow-header border-b border-line relative">
+    <header className="bg-white/90 backdrop-blur-md text-ink shrink-0 sticky top-0 z-50 border-b border-line/80 relative">
       <PageContainer>
-        <div className="h-[4.5rem] sm:h-[5rem] flex items-center justify-between gap-3 min-w-0">
+        <div className="h-16 lg:h-[4.5rem] flex items-center justify-between gap-3 min-w-0">
           <Link href="/" className="hover:opacity-90 transition-opacity shrink-0 min-w-0 py-1" aria-label="Home">
-            <BrandLogo heightClass="h-12 sm:h-14" />
+            <BrandLogo heightClass="h-11 sm:h-12" />
           </Link>
 
-          <nav className="hidden xl:flex flex-1 items-center justify-end gap-4 min-w-0 ml-4" aria-label="Primary">
+          <nav className="hidden xl:flex flex-1 items-center justify-end gap-6 min-w-0 ml-6" aria-label="Primary">
             <div
               className="relative shrink-0"
               onMouseEnter={() => onHoverIntent(true)}
@@ -81,7 +81,7 @@ export default function SiteHeader() {
               </Link>
             ))}
 
-            <Button href={siteContent.nav.contact.href} size="header" className="shrink-0 ml-1">
+            <Button href={siteContent.nav.contact.href} size="header" className="shrink-0">
               {siteContent.headerCta}
             </Button>
           </nav>
@@ -89,7 +89,7 @@ export default function SiteHeader() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="xl:hidden p-2 text-ink shrink-0 rounded hover:bg-surface-muted"
+            className="xl:hidden p-2 text-ink shrink-0 rounded-lg hover:bg-surface-muted"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >
@@ -104,14 +104,14 @@ export default function SiteHeader() {
           onMouseEnter={() => onHoverIntent(true)}
           onMouseLeave={() => onHoverIntent(false)}
         >
-          <div className="border-b border-line bg-surface-muted pb-2">
+          <div className="border-b border-line bg-surface-muted/95 backdrop-blur-sm pb-3 pt-1 shadow-card">
             <ServicesMegaMenuPanel onClose={() => setMegaOpen(false)} />
           </div>
         </div>
       )}
 
       {mobileOpen && (
-        <div className={`xl:hidden border-t border-line py-3 space-y-1 text-sm bg-surface ${PAGE_CONTAINER_CLASS}`}>
+        <div className={`xl:hidden border-t border-line py-4 space-y-1 text-sm bg-white ${PAGE_CONTAINER_CLASS}`}>
           <Link href="/" className="block py-2.5 text-ink-muted hover:text-brand" onClick={() => setMobileOpen(false)}>
             {siteContent.nav.home.label}
           </Link>
@@ -153,11 +153,7 @@ export default function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Button
-            href={siteContent.nav.contact.href}
-            className="w-full mt-3"
-            onClick={() => setMobileOpen(false)}
-          >
+          <Button href={siteContent.nav.contact.href} className="w-full mt-4" size="md" onClick={() => setMobileOpen(false)}>
             {siteContent.headerCta}
           </Button>
         </div>

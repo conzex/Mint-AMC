@@ -3,7 +3,7 @@ import PageContainer from './page-container';
 
 type PageSectionProps = {
   children: React.ReactNode;
-  tone?: 'default' | 'muted' | 'white';
+  tone?: 'default' | 'muted' | 'white' | 'dark';
   className?: string;
   containerClassName?: string;
   borderTop?: boolean;
@@ -13,6 +13,7 @@ const toneClass = {
   default: 'bg-bg-body',
   muted: 'bg-surface-muted',
   white: 'bg-surface',
+  dark: 'bg-ink text-white',
 };
 
 export default function PageSection({
@@ -25,7 +26,7 @@ export default function PageSection({
   return (
     <section
       className={cn(
-        'py-10 sm:py-12',
+        'py-16 sm:py-20 lg:py-28',
         toneClass[tone],
         borderTop && 'border-t border-line',
         className,

@@ -28,11 +28,11 @@ export function ServicesMegaMenuPanel({ onClose }: { onClose: () => void }) {
         ref={panelRef}
         role="menu"
         aria-label={siteContent.nav.services.label}
-        className="ui-card shadow-lg overflow-hidden"
+        className="ui-card shadow-card overflow-hidden border-0"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-line">
           {megaMenuColumns.map((col) => (
-            <div key={col.id} className="p-4">
+            <div key={col.id} className="p-5">
               <div className="flex items-center gap-2 mb-3">
                 <Icon icon={col.icon} size="sm" className="text-accent" />
                 <h3 className="type-eyebrow text-ink-muted">{col.heading}</h3>
@@ -43,7 +43,7 @@ export function ServicesMegaMenuPanel({ onClose }: { onClose: () => void }) {
                     <Link
                       href={`/services/${link.slug}`}
                       role="menuitem"
-                      className="block text-sm text-ink hover:bg-row-hover px-2 py-1.5 rounded transition-colors"
+                      className="block text-sm text-ink hover:text-brand hover:bg-surface-muted px-2 py-2 rounded-lg transition-colors"
                       onClick={onClose}
                     >
                       {link.label}
@@ -54,7 +54,7 @@ export function ServicesMegaMenuPanel({ onClose }: { onClose: () => void }) {
             </div>
           ))}
         </div>
-        <div className="px-4 py-3 border-t border-line bg-card-header flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="px-5 py-4 border-t border-line bg-surface-muted flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <span className="type-body">{siteContent.megaMenuFooterCta}</span>
           <Link
             href="/contact"

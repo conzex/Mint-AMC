@@ -2,18 +2,21 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-semibold transition-colors rounded disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 disabled:opacity-50';
 
 export const buttonVariants = {
-  primary: 'bg-brand text-white hover:bg-brand-hover border border-brand-hover',
-  secondary: 'bg-surface text-brand border border-line hover:bg-surface-muted',
-  ghost: 'text-brand hover:bg-surface-muted',
+  primary:
+    'bg-brand text-white hover:bg-brand-hover border border-brand-hover shadow-sm hover:shadow-md',
+  secondary:
+    'bg-surface text-ink border border-line hover:bg-surface-muted hover:border-ink/20',
+  ghost: 'text-brand hover:bg-brand-subtle/60',
+  onDark: 'bg-white text-brand hover:bg-white/90 border border-white',
 } as const;
 
 export const buttonSizes = {
-  sm: 'text-sm px-4 py-2',
-  md: 'text-sm px-6 py-3',
-  header: 'text-sm px-4 py-2 whitespace-nowrap',
+  sm: 'text-sm px-5 py-2.5 rounded-lg',
+  md: 'text-sm sm:text-base px-7 py-3.5 rounded-full',
+  header: 'text-sm px-5 py-2.5 rounded-full whitespace-nowrap',
 } as const;
 
 type ButtonProps = {
