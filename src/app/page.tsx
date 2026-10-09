@@ -15,7 +15,6 @@ export default function HomePage() {
     <MarketingChrome>
       <PageHeroBand
         size="large"
-        align="left"
         badge={
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/90 backdrop-blur-sm rounded-full type-eyebrow mb-8 border border-line shadow-sm">
             <Icon icon={Activity} size="xs" className="text-accent" />
@@ -25,15 +24,13 @@ export default function HomePage() {
         title={homeContent.heroHeadline}
         subtitle={homeContent.heroSubheadline}
       >
-        <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-          <Button href="/contact" size="md">
-            {homeContent.heroPrimaryCta}
-            <Icon icon={ArrowRight} size="sm" />
-          </Button>
-          <Button href="/services" variant="secondary" size="md">
-            {homeContent.heroSecondaryCta}
-          </Button>
-        </div>
+        <Button href="/contact" size="md">
+          {homeContent.heroPrimaryCta}
+          <Icon icon={ArrowRight} size="sm" />
+        </Button>
+        <Button href="/services" variant="secondary" size="md">
+          {homeContent.heroSecondaryCta}
+        </Button>
       </PageHeroBand>
 
       <PageSection tone="white" className="py-10 sm:py-12 lg:py-14">

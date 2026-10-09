@@ -28,7 +28,4 @@ export const aboutContent = {
     'OEM-coordinated spare parts and warranty handling',
     'Documented change and incident records for audit trails',
   ],
-  dpiitTitle: 'DPIIT recognition',
-  dpiitBody:
-    'Mint AMC benefits from the startup ecosystem credentials of CONZEX GLOBAL PRIVATE LIMITED as a DPIIT-recognised organisation, supporting innovation in infrastructure and managed services delivery.',
 };

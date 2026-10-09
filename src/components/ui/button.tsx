@@ -15,8 +15,8 @@ export const buttonVariants = {
 
 export const buttonSizes = {
   sm: 'text-sm px-5 py-2.5 rounded-lg',
-  md: 'text-sm sm:text-base px-7 py-3.5 rounded-full',
-  header: 'text-sm px-5 py-2.5 rounded-full whitespace-nowrap',
+  md: 'text-sm sm:text-base px-7 py-3 rounded-lg',
+  header: 'text-sm px-5 py-2.5 rounded-lg whitespace-nowrap',
 } as const;
 
 type ButtonProps = {

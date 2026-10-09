@@ -1,17 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState, useCallback } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { megaMenuColumns } from '@/content/mega-menu';
+import { useEffect, useRef } from 'react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { solutionsMegaMenuColumns } from '@/content/mega-menu';
 import { siteContent } from '@/content/site';
 import PageContainer from './page-container';
 import { Icon } from '@/components/ui/icon';
 
-const OPEN_DELAY_MS = 120;
-const CLOSE_DELAY_MS = 200;
-
-export function ServicesMegaMenuPanel({ onClose }: { onClose: () => void }) {
+export function SolutionsMegaMenuPanel({ onClose }: { onClose: () => void }) {
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,19 +24,19 @@ export function ServicesMegaMenuPanel({ onClose }: { onClose: () => void }) {
       <div
         ref={panelRef}
         role="menu"
-        aria-label={siteContent.nav.services.label}
+        aria-label={siteContent.nav.solutions.label}
         className="ui-card shadow-2xl overflow-hidden border border-line/80 rounded-lg bg-white"
       >
         <div className="bg-surface-muted/90 px-6 py-3 border-b border-line/60 flex items-center justify-between">
           <span className="text-xs font-semibold uppercase tracking-wider text-brand flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
-            Enterprise IT AMC Scope & Services
+            <Icon icon={ShieldCheck} size="xs" className="text-brand" />
+            Tailored Industry & Operational Solutions
           </span>
-          <span className="text-xs font-medium text-ink-muted">PAN-India Field Engineering & NOC</span>
+          <span className="text-xs font-medium text-ink-muted">SLA-Backed Enterprise Architecture</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-          {megaMenuColumns.map((col) => (
+          {solutionsMegaMenuColumns.map((col) => (
             <div key={col.id} className="space-y-3">
               <div className="flex items-center gap-2.5 pb-2 border-b border-line/50">
                 <div className="w-8 h-8 rounded-lg bg-brand-subtle text-brand flex items-center justify-center shrink-0">
@@ -51,7 +48,7 @@ export function ServicesMegaMenuPanel({ onClose }: { onClose: () => void }) {
                 {col.links.map((link) => (
                   <li key={link.slug}>
                     <Link
-                      href={`/services/${link.slug}`}
+                      href={`/solutions/${link.slug}`}
                       role="menuitem"
                       className="group flex items-center justify-between text-sm text-ink-muted hover:text-brand hover:bg-brand-subtle/50 px-3 py-2 rounded-lg transition-all duration-150"
                       onClick={onClose}
@@ -74,46 +71,17 @@ export function ServicesMegaMenuPanel({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="px-6 py-3.5 border-t border-line/60 bg-surface-muted/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
-          <span className="text-ink-muted font-medium">{siteContent.megaMenuFooterCta}</span>
+          <span className="text-ink-muted font-medium">Need a custom multi-vendor SLA proposal?</span>
           <Link
             href="/contact"
             className="text-brand font-semibold hover:underline inline-flex items-center gap-1.5 shrink-0 bg-white px-3.5 py-1.5 rounded-lg border border-line shadow-xs hover:border-brand/40 transition-colors"
             onClick={onClose}
           >
-            {siteContent.megaMenuFooterLink}
+            Consult Solution Architect
             <Icon icon={ArrowRight} size="xs" />
           </Link>
         </div>
       </div>
     </PageContainer>
   );
-}
-
-export function useMegaMenuDelays() {
-  const [open, setOpen] = useState(false);
-  const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const clearTimers = useCallback(() => {
-    if (openTimer.current) clearTimeout(openTimer.current);
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-  }, []);
-
-  const onHoverIntent = useCallback(
-    (entering: boolean) => {
-      clearTimers();
-      if (entering) {
-        closeTimer.current = null;
-        openTimer.current = setTimeout(() => setOpen(true), OPEN_DELAY_MS);
-      } else {
-        openTimer.current = null;
-        closeTimer.current = setTimeout(() => setOpen(false), CLOSE_DELAY_MS);
-      }
-    },
-    [clearTimers],
-  );
-
-  useEffect(() => () => clearTimers(), [clearTimers]);
-
-  return { open, setOpen, onHoverIntent };
 }

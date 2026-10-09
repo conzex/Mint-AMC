@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { siteContent } from '@/content/site';
 
-const openSans = Open_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
-  variable: '--font-open-sans',
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -42,11 +42,11 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={openSans.variable}>
+    <html lang="en" className={inter.variable}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className={`${openSans.className} min-h-screen bg-bg-body`}>{children}</body>
+      <body className={`${inter.className} min-h-screen bg-bg-body antialiased`}>{children}</body>
     </html>
   );
 }

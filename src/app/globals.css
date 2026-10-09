@@ -3,14 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --brand: #1c5338;
-  --brand-hover: #154a2f;
-  --accent: #c5a059;
-  --ink: #2c3135;
-  --ink-muted: #5c6166;
+  --brand: #2fa878;
+  --brand-hover: #268e65;
+  --secondary: #0076ce;
+  --secondary-hover: #005fa7;
+  --accent: #2fa878;
+  --ink: #1b2430;
+  --ink-muted: #526170;
   --surface: #ffffff;
-  --surface-muted: #f4f6f5;
-  --line: #e2e8e4;
+  --surface-muted: #f4f7f9;
+  --line: #dce4ea;
 }
 
 @layer base {
@@ -51,7 +53,7 @@
   }
 
   .type-hero-lead {
-    @apply text-base sm:text-lg lg:text-xl text-ink-muted leading-relaxed max-w-2xl;
+    @apply text-base sm:text-lg lg:text-xl text-ink-muted leading-relaxed max-w-2xl mx-auto;
   }
 
   .type-card-title {
@@ -71,19 +73,46 @@
   }
 
   .ui-card {
-    @apply bg-surface border border-line/80 rounded-xl shadow-card;
+    @apply bg-surface border border-line/80 rounded-lg shadow-card;
   }
 
   .ui-card-interactive {
-    @apply bg-surface border border-line/80 rounded-xl shadow-card transition-all duration-300 hover:border-brand/20 hover:-translate-y-0.5;
+    @apply bg-surface border border-line/80 rounded-lg shadow-card transition-all duration-300 hover:border-brand/40 hover:-translate-y-1 hover:shadow-lg;
   }
 
   .ui-card-interactive:hover {
-    box-shadow: 0 12px 40px rgba(44, 49, 53, 0.12);
+    box-shadow: 0 20px 35px -5px rgba(47, 168, 120, 0.12), 0 8px 16px -4px rgba(27, 36, 48, 0.06);
+  }
+
+  /* 3D Depth & Elevation Utilities */
+  .perspective-container {
+    perspective: 1000px;
+  }
+
+  .card-3d {
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 20px -2px rgba(27, 36, 48, 0.06), 0 2px 6px -1px rgba(27, 36, 48, 0.04);
+  }
+
+  .card-3d:hover {
+    transform: translateY(-6px) rotateX(1.5deg) rotateY(-1.5deg) scale(1.01);
+    box-shadow: 0 22px 40px -5px rgba(47, 168, 120, 0.18), 0 12px 20px -6px rgba(27, 36, 48, 0.1);
+  }
+
+  .glass-3d {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(220, 228, 234, 0.85);
+    box-shadow: 0 12px 36px 0 rgba(27, 36, 48, 0.08);
+  }
+
+  .glow-3d {
+    box-shadow: 0 0 30px -5px rgba(47, 168, 120, 0.35);
   }
 
   .ui-table-wrap {
-    @apply border border-line rounded-xl overflow-hidden bg-surface shadow-card;
+    @apply border border-line rounded-lg overflow-hidden bg-surface shadow-card;
   }
 
   .ui-table {
@@ -111,6 +140,19 @@
   }
 
   .ui-input {
-    @apply w-full px-3 py-2.5 border border-line rounded-lg text-sm text-ink bg-surface placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-brand/25;
+    @apply w-full px-3.5 py-2.5 border border-line rounded-lg text-sm text-ink bg-surface placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition-all;
   }
+}
+
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+.animate-float-3d {
+  animation: float3d 6s ease-in-out infinite;
 }
