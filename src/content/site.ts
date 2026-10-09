@@ -51,7 +51,7 @@ export const siteContent = {
   megaMenuFooterLink: 'Talk to an engineer',
   headerCta: 'Request quote',
   footerTagline:
-    'Enterprise IT Annual Maintenance Contracts and 24/7 NOC — a division of CONZEX GLOBAL PRIVATE LIMITED.',
+    'Enterprise IT annual maintenance contracts, field engineering, and optional 24/7 NOC for multi-location organisations across India.',
   footerServicesHeading: 'Services',
   footerAllServicesLink: 'View all AMC services',
   footerDivisionsHeading: 'Conzex group',
@@ -59,5 +59,4 @@ export const siteContent = {
   footerPrivacyLink: 'Privacy Policy',
   footerTermsLink: 'Terms of Service',
   footerSlaLink: 'SLA overview',
-  footerDivisionLine: 'Mint AMC is a division of',
 };

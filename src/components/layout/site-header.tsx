@@ -11,17 +11,26 @@ import PageContainer, { PAGE_CONTAINER_CLASS } from './page-container';
 import { ServicesMegaMenuPanel, useMegaMenuDelays } from './services-mega-menu';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
+import { cn } from '@/lib/utils';
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { open: megaOpen, setOpen: setMegaOpen, onHoverIntent } = useMegaMenuDelays();
 
   useEffect(() => {
     setMegaOpen(false);
     setMobileOpen(false);
   }, [pathname, setMegaOpen]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) => {
@@ -36,9 +45,14 @@ export default function SiteHeader() {
 
   const navLinkClass = (href: string) => {
     const active = pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
-    return `whitespace-nowrap transition-colors text-[15px] ${
-      active ? 'text-brand font-semibold' : 'text-ink-muted hover:text-ink'
-    }`;
+    return cn(
+      'relative whitespace-nowrap transition-colors text-[15px] py-1',
+      active
+        ? 'text-brand font-semibold'
+        : 'text-ink-muted hover:text-ink font-medium',
+      active &&
+        'after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-accent',
+    );
   };
 
   const staticLinks = [
@@ -50,46 +64,72 @@ export default function SiteHeader() {
   ];
 
   return (
-    <header className="bg-white/90 backdrop-blur-md text-ink shrink-0 sticky top-0 z-50 border-b border-line/80 relative">
+    <header
+      className={cn(
+        'text-ink shrink-0 sticky top-0 z-50 border-b transition-[background,box-shadow,border-color] duration-300',
+        scrolled
+          ? 'bg-white/95 backdrop-blur-lg border-line shadow-[0_4px_24px_rgba(44,49,53,0.08)]'
+          : 'bg-white/80 backdrop-blur-md border-transparent',
+      )}
+    >
       <PageContainer>
-        <div className="h-16 lg:h-[4.5rem] flex items-center justify-between gap-3 min-w-0">
-          <Link href="/" className="hover:opacity-90 transition-opacity shrink-0 min-w-0 py-1" aria-label="Home">
+        <div className="h-[4.25rem] lg:h-[4.75rem] flex items-center justify-between gap-4 min-w-0">
+          <Link
+            href="/"
+            className="hover:opacity-90 transition-opacity shrink-0 min-w-0 flex items-center gap-3"
+            aria-label="Home"
+          >
             <BrandLogo heightClass="h-11 sm:h-12" />
           </Link>
 
-          <nav className="hidden xl:flex flex-1 items-center justify-end gap-6 min-w-0 ml-6" aria-label="Primary">
+          <nav
+            className="hidden xl:flex flex-1 items-center justify-end gap-1 min-w-0 ml-6"
+            aria-label="Primary"
+          >
             <div
-              className="relative shrink-0"
+              className="flex items-center gap-0.5 px-1"
               onMouseEnter={() => onHoverIntent(true)}
               onMouseLeave={() => onHoverIntent(false)}
             >
               <button
                 type="button"
-                className={`flex items-center gap-1 ${navLinkClass('/services')}`}
+                className={cn('flex items-center gap-1 px-3', navLinkClass('/services'))}
                 aria-expanded={megaOpen}
                 aria-haspopup="menu"
                 onClick={() => setMegaOpen((v) => !v)}
               >
                 {siteContent.nav.services.label}
-                <Icon icon={ChevronDown} size="xs" className={megaOpen ? 'rotate-180 transition-transform' : 'transition-transform'} />
+                <Icon
+                  icon={ChevronDown}
+                  size="xs"
+                  className={cn('opacity-70', megaOpen && 'rotate-180 transition-transform')}
+                />
               </button>
             </div>
 
             {staticLinks.map((link) => (
-              <Link key={link.href} href={link.href} className={`shrink-0 ${navLinkClass(link.href)}`}>
+              <Link key={link.href} href={link.href} className={cn('px-3 shrink-0', navLinkClass(link.href))}>
                 {link.label}
               </Link>
             ))}
 
-            <Button href={siteContent.nav.contact.href} size="header" className="shrink-0">
-              {siteContent.headerCta}
-            </Button>
+            <div className="flex items-center gap-2 ml-4 pl-4 border-l border-line shrink-0">
+              <Link
+                href={siteContent.nav.contact.href}
+                className="text-[15px] font-medium text-ink-muted hover:text-brand px-2 py-1 transition-colors"
+              >
+                {siteContent.nav.contact.label}
+              </Link>
+              <Button href={siteContent.nav.contact.href} size="header">
+                {siteContent.headerCta}
+              </Button>
+            </div>
           </nav>
 
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="xl:hidden p-2 text-ink shrink-0 rounded-lg hover:bg-surface-muted"
+            className="xl:hidden p-2.5 text-ink shrink-0 rounded-lg border border-line/80 hover:bg-surface-muted"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >
@@ -104,7 +144,7 @@ export default function SiteHeader() {
           onMouseEnter={() => onHoverIntent(true)}
           onMouseLeave={() => onHoverIntent(false)}
         >
-          <div className="border-b border-line bg-surface-muted/95 backdrop-blur-sm pb-3 pt-1 shadow-card">
+          <div className="border-b border-line bg-white/98 backdrop-blur-lg pb-3 pt-2 shadow-card">
             <ServicesMegaMenuPanel onClose={() => setMegaOpen(false)} />
           </div>
         </div>

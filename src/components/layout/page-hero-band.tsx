@@ -31,51 +31,72 @@ export default function PageHeroBand({
     <section
       className={cn(
         'relative shrink-0 border-b border-line bg-surface overflow-hidden flex flex-col justify-center',
-        isLarge ? 'min-h-[min(88vh,920px)]' : 'min-h-[220px] sm:min-h-[260px]',
+        isLarge ? 'min-h-[min(92vh,960px)]' : 'min-h-[240px] sm:min-h-[280px]',
         className,
       )}
     >
       {showHeroBg ? (
         <>
           <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
+            className="absolute inset-0 bg-cover bg-[center_30%] bg-no-repeat"
             style={{ backgroundImage: `url("${MINT_AMC_HERO_BG_URL}")` }}
             aria-hidden
           />
           <div
-            className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/75 to-white/40 pointer-events-none"
+            className="absolute inset-0 bg-gradient-to-r from-white/[0.97] via-white/80 to-white/25 sm:to-transparent pointer-events-none"
             aria-hidden
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent pointer-events-none"
+            className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/20 pointer-events-none"
+            aria-hidden
+          />
+          <div
+            className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface to-transparent pointer-events-none"
             aria-hidden
           />
         </>
       ) : (
         <div
-          className="absolute inset-0 bg-gradient-to-b from-surface via-brand-subtle/30 to-surface pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-br from-surface via-brand-subtle/40 to-surface pointer-events-none"
           aria-hidden
         />
       )}
+
+      {isLarge && (
+        <div
+          className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand/5 to-transparent pointer-events-none hidden lg:block"
+          aria-hidden
+        />
+      )}
+
       <div
         className={cn(
           'relative w-full',
           PAGE_CONTAINER_CLASS,
-          isLarge ? 'py-16 sm:py-20 lg:py-24' : 'py-12 sm:py-14',
+          isLarge ? 'py-20 sm:py-24 lg:py-28' : 'py-12 sm:py-14',
         )}
       >
         <div
           className={cn(
-            isLarge ? 'max-w-4xl' : 'max-w-3xl',
+            isLarge ? 'max-w-3xl lg:max-w-[42rem]' : 'max-w-3xl',
             align === 'center' && 'mx-auto text-center',
           )}
         >
+          {isLarge && align === 'left' && (
+            <div className="w-12 h-1 rounded-full bg-accent mb-8" aria-hidden />
+          )}
           {badge}
-          <h1 className={cn(isLarge ? 'type-display mb-6' : 'type-page-title mb-3')}>{title}</h1>
+          <h1
+            className={cn(
+              isLarge ? 'type-display mb-6 text-balance' : 'type-page-title mb-3',
+            )}
+          >
+            {title}
+          </h1>
           {subtitle && (
             <p
               className={cn(
-                isLarge ? 'type-hero-lead mb-10' : 'type-body max-w-2xl',
+                isLarge ? 'type-hero-lead mb-10 max-w-2xl text-pretty' : 'type-body max-w-2xl mb-6',
                 align === 'center' && 'mx-auto',
               )}
             >
