@@ -1,238 +1,87 @@
 'use client';
 
-import React, { useState } from 'react';
-import PageContainer from '@/components/layout/PageContainer';
-import PageHeroBand from '@/components/layout/PageHeroBand';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import Badge from '@/components/ui/Badge';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import { PhoneSymbol, EnvelopeSymbol, ClockSymbol, Building2Symbol, ShieldCheckSymbol } from '@/components/symbols';
-import { contactData } from '@/content/contact';
-import { serviceCategories } from '@/content/services';
+import { Mail, Phone, Send } from 'lucide-react';
+import MarketingChrome from '@/components/layout/marketing-chrome';
+import PageContainer from '@/components/layout/page-container';
+import PageHeroBand from '@/components/layout/page-hero-band';
+import FaqAccordion from '@/components/ui/faq-accordion';
+import { contactContent } from '@/content/contact';
+import { siteContent } from '@/content/site';
+import { useState } from 'react';
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    service: 'hardware-amc',
-    message: '',
-  });
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    const mailto = `mailto:${siteContent.contact.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`From: ${form.name} (${form.email})\n\n${form.message}`)}`;
+    window.open(mailto);
+    setSent(true);
   };
 
   return (
-    <>
-      <PageHeroBand
-        title={contactData.hero.title}
-        subtitle={contactData.hero.subtitle}
-        badge={<Badge variant="mint">NOC & Business Contact</Badge>}
-      />
-
-      <PageContainer>
-        <Breadcrumbs items={[{ label: 'Contact Us' }]} />
-      </PageContainer>
-
-      <section className="py-12 bg-white border-b border-border-gray">
+    <MarketingChrome>
+      <PageHeroBand title={contactContent.heroTitle} subtitle={contactContent.heroSubtitle} align="left" />
+      <section className="py-10 bg-bg-body">
         <PageContainer>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Contact Form Column */}
-            <div className="lg:col-span-7">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-xl">{contactData.form.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {submitted ? (
-                    <div className="p-6 bg-mint-light border border-mint-green/30 rounded-md text-center space-y-2">
-                      <ShieldCheckSymbol className="w-10 h-10 text-mint-green mx-auto" />
-                      <h3 className="text-lg font-bold text-dark-navy">Request Received</h3>
-                      <p className="text-xs text-slate-text">{contactData.form.successMessage}</p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-dark-navy mb-1">
-                            {contactData.form.nameLabel} *
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                            placeholder="e.g. Rajesh Malhotra"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-dark-navy mb-1">
-                            {contactData.form.emailLabel} *
-                          </label>
-                          <input
-                            type="email"
-                            required
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                            placeholder="e.g. rajesh@vanguard.com"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-dark-navy mb-1">
-                            {contactData.form.phoneLabel} *
-                          </label>
-                          <input
-                            type="tel"
-                            required
-                            value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                            placeholder="e.g. +91 98765-43210"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-dark-navy mb-1">
-                            {contactData.form.companyLabel} *
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={formData.company}
-                            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                            className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                            placeholder="e.g. Vanguard Logistics & Supply Chain"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-semibold text-dark-navy mb-1">
-                          {contactData.form.serviceLabel}
-                        </label>
-                        <select
-                          value={formData.service}
-                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                          className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none bg-white"
-                        >
-                          {serviceCategories.map((s) => (
-                            <option key={s.slug} value={s.slug}>
-                              {s.title}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-semibold text-dark-navy mb-1">
-                          {contactData.form.messageLabel} *
-                        </label>
-                        <textarea
-                          rows={4}
-                          required
-                          value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          className="w-full px-3 py-2 text-xs border border-border-gray rounded focus:border-tech-blue focus:outline-none"
-                          placeholder="Describe your equipment inventory, locations, or SLA expectations..."
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="w-full py-3 bg-tech-blue text-white text-xs font-semibold rounded hover:bg-tech-blue-hover transition-colors"
-                      >
-                        {contactData.form.submitButton}
-                      </button>
-                    </form>
-                  )}
-                </CardContent>
-              </Card>
+          <div className="grid lg:grid-cols-2 gap-4 mb-8">
+            <div className="bg-white border border-border-card rounded">
+              <div className="px-5 py-4 border-b border-border-card">
+                <h2 className="text-sm font-semibold text-text-primary">{contactContent.nocTitle}</h2>
+              </div>
+              <div className="px-5 py-4 space-y-3 text-sm text-text-secondary">
+                <p>{contactContent.nocBody}</p>
+                <div className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-dell-blue mt-0.5" />
+                  <span>{siteContent.contact.nocHotline}</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 text-dell-blue mt-0.5" />
+                  <span>{siteContent.contact.escalationEmail}</span>
+                </div>
+              </div>
             </div>
-
-            {/* NOC & Escalation Column */}
-            <div className="lg:col-span-5 space-y-6">
-              {/* NOC Hotline Card */}
-              <Card className="bg-cool-white border-tech-blue/30">
-                <CardHeader className="bg-tech-blue/5">
-                  <Badge variant="blue" className="mb-1">24/7/365 Command Center</Badge>
-                  <CardTitle className="text-base">{contactData.nocHotline.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 py-4 text-xs">
-                  <p className="text-slate-text">{contactData.nocHotline.description}</p>
-                  <div className="flex items-center gap-2 font-bold text-dark-navy">
-                    <PhoneSymbol className="w-4 h-4 text-tech-blue" />
-                    <span>Hotline: {contactData.nocHotline.phone}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-text">
-                    <EnvelopeSymbol className="w-4 h-4 text-mint-green" />
-                    <span>NOC Email: {contactData.nocHotline.email}</span>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Escalation Matrix */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Support Escalation Matrix</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <table className="w-full text-left text-xs border-collapse">
-                    <thead>
-                      <tr className="bg-cool-white border-b border-border-gray text-dark-navy">
-                        <th className="p-3 font-semibold">Tier</th>
-                        <th className="p-3 font-semibold">Role</th>
-                        <th className="p-3 font-semibold">Target SLA</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border-gray/60">
-                      {contactData.escalationMatrix.map((item, i) => (
-                        <tr key={i}>
-                          <td className="p-3 font-bold text-tech-blue">{item.level}</td>
-                          <td className="p-3 text-dark-navy">{item.role}</td>
-                          <td className="p-3 text-slate-text">{item.time}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </CardContent>
-              </Card>
-
-              {/* Group Routing Info */}
-              <Card className="p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <Building2Symbol className="w-4 h-4 text-tech-blue" />
-                  <h4 className="text-xs font-bold text-dark-navy">{contactData.divisionRouting.title}</h4>
-                </div>
-                <p className="text-xs text-slate-text mb-3">{contactData.divisionRouting.description}</p>
-                <div className="space-y-2">
-                  {contactData.divisionRouting.divisions.map((div, i) => (
-                    <a
-                      key={i}
-                      href={div.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block p-2 bg-cool-white border border-border-gray rounded text-[11px] hover:border-tech-blue transition-colors"
-                    >
-                      <span className="font-semibold text-dark-navy block">{div.name} ↗</span>
-                      <span className="text-slate-text">{div.desc}</span>
-                    </a>
-                  ))}
-                </div>
-              </Card>
+            <div className="bg-white border border-border-card rounded">
+              <div className="px-5 py-4 border-b border-border-card">
+                <h2 className="text-sm font-semibold text-text-primary">{contactContent.formTitle}</h2>
+              </div>
+              <form onSubmit={handleSubmit} className="px-5 py-4 space-y-3">
+                {sent ? (
+                  <p className="text-sm text-text-secondary">{contactContent.formSentMessage}</p>
+                ) : (
+                  <>
+                    <input required placeholder={contactContent.formPlaceholders.name} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2 border border-border-card rounded text-sm" />
+                    <input required type="email" placeholder={contactContent.formPlaceholders.email} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-3 py-2 border border-border-card rounded text-sm" />
+                    <input required placeholder={contactContent.formPlaceholders.subject} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="w-full px-3 py-2 border border-border-card rounded text-sm" />
+                    <textarea required rows={4} placeholder={contactContent.formPlaceholders.message} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full px-3 py-2 border border-border-card rounded text-sm" />
+                    <button type="submit" className="inline-flex items-center gap-2 bg-dell-blue text-white text-sm font-semibold px-4 py-2 rounded hover:bg-dell-blue-hover">
+                      <Send className="w-4 h-4" /> {contactContent.formSubmitLabel}
+                    </button>
+                  </>
+                )}
+              </form>
             </div>
           </div>
+          <div className="bg-white border border-border-card rounded mb-8">
+            <div className="px-5 py-4 border-b border-border-card">
+              <h2 className="text-sm font-semibold text-text-primary">{contactContent.escalationTitle}</h2>
+            </div>
+            <table className="w-full text-sm">
+              <tbody className="divide-y divide-border-card">
+                {contactContent.escalationMatrix.map((row) => (
+                  <tr key={row.level} className="hover:bg-row-hover">
+                    <td className="p-3 font-medium text-text-primary">{row.level}</td>
+                    <td className="p-3 text-text-secondary">{row.contact}</td>
+                    <td className="p-3 text-text-secondary">{row.sla}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <FaqAccordion items={contactContent.faq} />
         </PageContainer>
       </section>
-    </>
+    </MarketingChrome>
   );
 }

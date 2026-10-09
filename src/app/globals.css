@@ -1,59 +1,8 @@
-@import "tailwindcss";
-
-:root {
-  --color-tech-blue: #0076CE;
-  --color-tech-blue-hover: #005FA3;
-  --color-mint-green: #3EB489;
-  --color-mint-light: #EBF9F3;
-  --color-dark-navy: #102A43;
-  --color-slate-text: #52606D;
-  --color-cool-white: #F5F7FA;
-  --color-border-gray: #D9E2EC;
-}
-
-* {
-  border-color: #D9E2EC;
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  background-color: #ffffff;
-  color: #52606D;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #102A43;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.max-w-layout {
-  max-width: 1440px;
-}
-
-.page-container {
-  max-width: 1440px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .page-container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .page-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+  @apply bg-bg-body text-text-primary font-sans;
 }

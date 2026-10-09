@@ -1,47 +1,25 @@
-export const whyData = {
-  hero: {
-    title: 'Engineered for Zero Downtime & Maximum Accountability',
-    subtitle: 'Discover why top corporate IT leaders trust Mint AMC for mission-critical hardware, server, and data centre maintenance.',
-  },
+export const whyContent = {
+  heroTitle: '{{WHY_HERO_TITLE}}',
+  heroSubtitle: '{{WHY_HERO_SUBTITLE}}',
+  differentiatorsTitle: '{{WHY_DIFFERENTIATORS_TITLE}}',
   differentiators: [
-    {
-      title: 'Guaranteed On-Site SLA Response Times',
-      description: 'We don’t just pledge fast service — our SLAs contractually commit to sub-2-hour on-site engineer dispatch in metro locations, backed by financial SLA credits.',
-      metric: '< 2-Hour Response SLA',
-    },
-    {
-      title: '100% Genuine OEM Spare Part Logistics',
-      description: 'We maintain dedicated inventory pools of original OEM motherboards, power supplies, RAID controllers, and drives for Dell, HPE, Lenovo, Cisco, and APC.',
-      metric: '100% Genuine OEM Parts',
-    },
-    {
-      title: '24/7 Centralized NOC Telemetry Surveillance',
-      description: 'Our Network Operations Center monitors SNMP health metrics 24/7/365, catching drive degrades, thermal spikes, and power fluctuations before failures occur.',
-      metric: '24/7/365 NOC Active',
-    },
-    {
-      title: 'Multi-City Unified Account Management',
-      description: 'Single point of contact and consolidated billing for organizations operating multi-branch networks across India with uniform service quality.',
-      metric: '500+ Sites Managed',
-    },
+    '{{WHY_DIFFERENTIATOR_1}}',
+    '{{WHY_DIFFERENTIATOR_2}}',
+    '{{WHY_DIFFERENTIATOR_3}}',
+    '{{WHY_DIFFERENTIATOR_4}}',
   ],
-  slas: {
-    title: 'Incident Severity & SLA Response Commitment',
-    description: 'Contractual SLA response and resolution targets tailored to incident impact levels.',
-    tiers: [
-      { priority: 'Priority 1 (Critical Outage)', responseTime: '< 15 Mins Remote / < 2 Hours On-Site', resolutionTime: '4-Hour Maximum Resolution SLA' },
-      { priority: 'Priority 2 (High Degradation)', responseTime: '< 30 Mins Remote / < 4 Hours On-Site', resolutionTime: '8-Hour Resolution Target' },
-      { priority: 'Priority 3 (Standard Request)', responseTime: '< 2 Hours Remote / Next Business Day', resolutionTime: '24-Hour Resolution Target' },
-    ],
+  slaTitle: '{{WHY_SLA_TITLE}}',
+  slaTableHeaders: {
+    tier: '{{WHY_SLA_TABLE_TIER}}',
+    response: '{{WHY_SLA_TABLE_RESPONSE}}',
+    resolution: '{{WHY_SLA_TABLE_RESOLUTION}}',
   },
-  oemPartnerships: {
-    title: 'OEM Hardware & Software Support Capabilities',
-    description: 'Direct technical familiarity and spare logistics for leading enterprise hardware vendors.',
-    partners: [
-      'Dell Technologies Enterprise',
-      'HPE ProLiant & Aruba',
-      'Cisco Systems & Meraki',
-      'Lenovo ThinkSystem & PCs',
-    ],
-  },
+  slaRows: [
+    { tier: '{{WHY_SLA_ROW_TIER_1}}', response: '{{WHY_SLA_ROW_RESPONSE_1}}', resolution: '{{WHY_SLA_ROW_RESOLUTION_1}}' },
+    { tier: '{{WHY_SLA_ROW_TIER_2}}', response: '{{WHY_SLA_ROW_RESPONSE_2}}', resolution: '{{WHY_SLA_ROW_RESOLUTION_2}}' },
+    { tier: '{{WHY_SLA_ROW_TIER_3}}', response: '{{WHY_SLA_ROW_RESPONSE_3}}', resolution: '{{WHY_SLA_ROW_RESOLUTION_3}}' },
+  ],
+  oemTitle: '{{WHY_OEM_TITLE}}',
+  oemBody: '{{WHY_OEM_BODY}}',
+  oemPartners: ['{{OEM_PARTNER_1}}', '{{OEM_PARTNER_2}}', '{{OEM_PARTNER_3}}'],
 };

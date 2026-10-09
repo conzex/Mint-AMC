@@ -1,44 +1,28 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        'tech-blue': '#0076CE',
-        'tech-blue-hover': '#005FA3',
-        'mint-green': '#3EB489',
-        'mint-light': '#EBF9F3',
-        'dark-navy': '#102A43',
-        'slate-text': '#52606D',
-        'cool-white': '#F5F7FA',
-        'border-gray': '#D9E2EC',
+        'dell-blue': '#0076CE',
+        'dell-blue-hover': '#005FA3',
+        'dell-dark': '#004B87',
+        'bg-body': '#F5F5F5',
+        'bg-card': '#FFFFFF',
+        'border-card': '#D8D8D8',
+        'card-header': '#E8EEF4',
+        'row-alt': '#FAFAFA',
+        'row-hover': '#E6F3FF',
+        'green-healthy': '#2E8540',
+        'amber-warning': '#C77700',
+        'red-critical': '#C0392B',
+        'text-primary': '#1A1A1A',
+        'text-secondary': '#666666',
       },
-      borderRadius: {
-        DEFAULT: '2px',
-        sm: '2px',
-        md: '4px',
-        lg: '6px',
-      },
-      fontFamily: {
-        sans: [
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"SF Pro Display"',
-          '"SF Pro Text"',
-          '"Helvetica Neue"',
-          'Helvetica',
-          'Arial',
-          'sans-serif',
-        ],
-      },
-      maxWidth: {
-        layout: '1440px',
-      },
+      borderRadius: { DEFAULT: '2px', sm: '2px', md: '4px', lg: '6px' },
+      fontFamily: { sans: ['"Open Sans"', 'Roboto', 'system-ui', 'sans-serif'] },
+      maxWidth: { layout: '1440px' },
     },
   },
   plugins: [],

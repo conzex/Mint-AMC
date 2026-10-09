@@ -1,123 +1,46 @@
-export interface SiteConfig {
-  brandName: string;
-  tagline: string;
+export const siteContent = {
+  brandName: '{{BRAND_NAME}}',
+  siteUrl: 'https://www.mintamc.com',
   parentCompany: {
-    name: string;
-    website: string;
-    cin: string;
-    dpiitRecognition: string;
-    divisions: Array<{ name: string; url: string; description: string }>;
-  };
-  navigation: {
-    primaryLinks: Array<{ label: string; href: string }>;
-    parentLink: { label: string; href: string };
-  };
+    name: '{{PARENT_COMPANY_NAME}}',
+    url: 'https://www.conzex.com',
+    cin: '{{PARENT_CIN}}',
+    dpiit: '{{DPIIT_RECOGNITION_ID}}',
+  },
+  divisions: [
+    { name: '{{DIVISION_CONZEX_HOSTING_NAME}}', url: 'https://www.conzex.com', description: '{{DIVISION_CONZEX_HOSTING_DESC}}' },
+    { name: '{{DIVISION_MINT_AMC_NAME}}', url: 'https://www.mintamc.com', description: '{{DIVISION_MINT_AMC_DESC}}' },
+    { name: '{{DIVISION_CONZEX_DC_NAME}}', url: '{{DIVISION_CONZEX_DC_URL}}', description: '{{DIVISION_CONZEX_DC_DESC}}' },
+    { name: '{{DIVISION_CONZEX_SECURITY_NAME}}', url: '{{DIVISION_CONZEX_SECURITY_URL}}', description: '{{DIVISION_CONZEX_SECURITY_DESC}}' },
+  ],
   contact: {
-    email: string;
-    phone: string;
-    nocHotline: string;
-    escalationEmail: string;
-    headquarters: string;
-    workingHours: string;
-  };
-  footerLinks: {
-    services: Array<{ label: string; href: string }>;
-    solutions: Array<{ label: string; href: string }>;
-    company: Array<{ label: string; href: string }>;
-    resources: Array<{ label: string; href: string }>;
-    legal: Array<{ label: string; href: string }>;
-  };
-}
-
-export const siteConfig: SiteConfig = {
-  brandName: 'Mint AMC',
-  tagline: 'Enterprise IT Annual Maintenance Contracts & Proactive NOC Support',
-  parentCompany: {
-    name: 'CONZEX GLOBAL PRIVATE LIMITED',
-    website: 'https://www.conzex.com',
-    cin: 'U72900DL2021PTC384501',
-    dpiitRecognition: 'DPIIT78492',
-    divisions: [
-      {
-        name: 'Conzex Hosting',
-        url: 'https://www.conzex.com',
-        description: 'Enterprise Cloud Hosting, Bare-Metal VPS & Managed Infrastructure',
-      },
-      {
-        name: 'Mint AMC',
-        url: 'https://www.mintamc.com',
-        description: 'Nationwide IT Hardware, Network & Data Centre AMC Services',
-      },
-      {
-        name: 'Conzex Data Centre',
-        url: 'https://www.conzex.com/datacentre',
-        description: 'Tier-III Colocation, Dedicated Server Hosting & DR Services',
-      },
-      {
-        name: 'Conzex Cyber Security',
-        url: 'https://www.conzex.com/security',
-        description: 'SOC Monitoring, VAPT, Compliance & Managed Perimeter Protection',
-      },
-    ],
+    email: '{{CONTACT_EMAIL}}',
+    phone: '{{CONTACT_PHONE}}',
+    nocHotline: '{{NOC_HOTLINE}}',
+    escalationEmail: '{{ESCALATION_EMAIL}}',
+    headquarters: '{{HEADQUARTERS_ADDRESS}}',
+    workingHours: '{{WORKING_HOURS}}',
   },
-  navigation: {
-    primaryLinks: [
-      { label: 'Home', href: '/' },
-      { label: 'Services', href: '/services' },
-      { label: 'Solutions', href: '/solutions' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'Why Mint AMC', href: '/why-mint-amc' },
-      { label: 'About', href: '/about' },
-      { label: 'Resources', href: '/resources' },
-      { label: 'Contact', href: '/contact' },
-    ],
-    parentLink: {
-      label: 'Conzex Global',
-      href: 'https://www.conzex.com',
-    },
+  nav: {
+    home: { label: '{{NAV_HOME}}', href: '/' },
+    solutions: { label: '{{NAV_SOLUTIONS}}', href: '/solutions' },
+    pricing: { label: '{{NAV_PRICING}}', href: '/pricing' },
+    why: { label: '{{NAV_WHY_MINT_AMC}}', href: '/why-mint-amc' },
+    about: { label: '{{NAV_ABOUT}}', href: '/about' },
+    resources: { label: '{{NAV_RESOURCES}}', href: '/resources' },
+    contact: { label: '{{NAV_CONTACT}}', href: '/contact' },
+    services: { label: '{{NAV_SERVICES}}', href: '/services' },
   },
-  contact: {
-    email: 'support@mintamc.com',
-    phone: '+91 (011) 4920-8800',
-    nocHotline: '+91 1800-210-9900',
-    escalationEmail: 'escalations@mintamc.com',
-    headquarters: 'Conzex Towers, Sector 62, Noida, NCR, India',
-    workingHours: '24/7/365 NOC Support | Business Office: Mon–Sat 9:00 AM – 6:00 PM IST',
-  },
-  footerLinks: {
-    services: [
-      { label: 'Desktop & Laptop AMC', href: '/services/hardware-amc' },
-      { label: 'Software & Application Support', href: '/services/software-support' },
-      { label: 'Network Equipment AMC', href: '/services/network-management' },
-      { label: 'Printer & Peripheral AMC', href: '/services/printer-peripheral' },
-      { label: 'Server & Storage AMC', href: '/services/server-storage' },
-      { label: 'Data Centre Infrastructure AMC', href: '/services/data-centre' },
-      { label: 'Cloud Infrastructure Support', href: '/services/cloud-support' },
-      { label: '24/7 Remote Monitoring & NOC', href: '/services/247-monitoring' },
-    ],
-    solutions: [
-      { label: 'SMB Infrastructure AMC', href: '/solutions#smb' },
-      { label: 'Enterprise Multi-Site AMC', href: '/solutions#enterprise' },
-      { label: 'Government & PSU AMC', href: '/solutions#government' },
-      { label: 'Healthcare IT AMC', href: '/solutions#healthcare' },
-      { label: 'Educational Institutions', href: '/solutions#education' },
-    ],
-    company: [
-      { label: 'About Mint AMC', href: '/about' },
-      { label: 'Why Choose Us', href: '/why-mint-amc' },
-      { label: 'Pricing Plans', href: '/pricing' },
-      { label: 'SLA Framework', href: '/sla' },
-      { label: 'Contact & Support', href: '/contact' },
-    ],
-    resources: [
-      { label: 'IT AMC Best Practices Guide', href: '/resources/it-amc-guide-2026' },
-      { label: 'Preventive vs Break-Fix Analysis', href: '/resources/preventive-vs-breakfix-maintenance' },
-      { label: 'SLA Selection Guidelines', href: '/resources/sla-selection-best-practices' },
-    ],
-    legal: [
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
-      { label: 'Master SLA Agreement', href: '/sla' },
-    ],
-  },
+  megaMenuFooterCta: '{{MEGA_MENU_FOOTER_CTA}}',
+  megaMenuFooterLink: '{{MEGA_MENU_FOOTER_LINK}}',
+  headerCta: '{{HEADER_CTA_BUTTON}}',
+  footerTagline: '{{FOOTER_TAGLINE}}',
+  footerServicesHeading: '{{FOOTER_SERVICES_HEADING}}',
+  footerAllServicesLink: '{{FOOTER_ALL_SERVICES_LINK}}',
+  footerDivisionsHeading: '{{FOOTER_DIVISIONS_HEADING}}',
+  footerLegalHeading: '{{FOOTER_LEGAL_HEADING}}',
+  footerPrivacyLink: '{{FOOTER_PRIVACY_LINK}}',
+  footerTermsLink: '{{FOOTER_TERMS_LINK}}',
+  footerSlaLink: '{{FOOTER_SLA_LINK}}',
+  footerDivisionLine: '{{FOOTER_DIVISION_LINE}}',
 };

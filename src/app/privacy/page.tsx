@@ -1,40 +1,24 @@
-import React from 'react';
-import PageContainer from '@/components/layout/PageContainer';
-import PageHeroBand from '@/components/layout/PageHeroBand';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import Badge from '@/components/ui/Badge';
-import { legalData } from '@/content/legal';
+import MarketingChrome from '@/components/layout/marketing-chrome';
+import PageContainer from '@/components/layout/page-container';
+import PageHeroBand from '@/components/layout/page-hero-band';
+import { privacyContent } from '@/content/legal';
 
-export const metadata = {
-  title: 'Privacy Policy | Mint AMC',
-  description: 'Privacy Policy for Mint AMC, a division of CONZEX GLOBAL PRIVATE LIMITED.',
-};
+export const metadata = { title: '{{META_PRIVACY_TITLE}}' };
 
 export default function PrivacyPage() {
   return (
-    <>
-      <PageHeroBand
-        title={legalData.privacy.title}
-        subtitle={`Last Updated: ${legalData.privacy.lastUpdated}`}
-        badge={<Badge variant="navy">Legal Policy</Badge>}
-      />
-
-      <PageContainer>
-        <Breadcrumbs items={[{ label: 'Privacy Policy' }]} />
-      </PageContainer>
-
-      <section className="py-12 bg-white">
-        <PageContainer>
-          <div className="max-w-3xl mx-auto space-y-8 text-sm text-slate-text leading-relaxed">
-            {legalData.privacy.sections.map((sec, i) => (
-              <div key={i} className="space-y-2">
-                <h2 className="text-lg font-bold text-dark-navy">{sec.heading}</h2>
-                <p>{sec.body}</p>
-              </div>
-            ))}
-          </div>
+    <MarketingChrome>
+      <PageHeroBand title={privacyContent.title} size="compact" align="left" />
+      <section className="py-10 bg-bg-body">
+        <PageContainer className="max-w-3xl space-y-4">
+          {privacyContent.sections.map((s) => (
+            <div key={s.heading} className="bg-white border border-border-card rounded p-5">
+              <h2 className="text-sm font-bold text-text-primary">{s.heading}</h2>
+              <p className="text-sm text-text-secondary mt-2 leading-relaxed">{s.body}</p>
+            </div>
+          ))}
         </PageContainer>
       </section>
-    </>
+    </MarketingChrome>
   );
 }

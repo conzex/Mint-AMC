@@ -1,65 +1,41 @@
 import type { Metadata } from 'next';
-import Navigation from '@/components/layout/Navigation';
-import Footer from '@/components/layout/Footer';
 import './globals.css';
+import { siteContent } from '@/content/site';
 
 export const metadata: Metadata = {
-  title: 'Mint AMC | Corporate IT Annual Maintenance Contract Services',
-  description:
-    'Mint AMC is an IT Annual Maintenance Contract services division under CONZEX GLOBAL PRIVATE LIMITED providing desktop, laptop, server, network, and data centre support.',
+  title: '{{META_DEFAULT_TITLE}}',
+  description: '{{META_DEFAULT_DESCRIPTION}}',
+  metadataBase: new URL(siteContent.siteUrl),
   openGraph: {
-    title: 'Mint AMC | Enterprise IT Maintenance & NOC Support',
-    description:
-      'High-availability IT Annual Maintenance Contracts (AMC) across India with 24/7 NOC monitoring, guaranteed SLAs, and OEM hardware support.',
-    url: 'https://www.mintamc.com',
-    siteName: 'Mint AMC',
-    locale: 'en_US',
+    title: '{{META_OG_TITLE}}',
+    description: '{{META_OG_DESCRIPTION}}',
+    url: siteContent.siteUrl,
+    siteName: siteContent.brandName,
+    locale: 'en_IN',
     type: 'website',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Mint AMC',
-  url: 'https://www.mintamc.com',
-  logo: 'https://www.mintamc.com/logo.svg',
+  name: siteContent.brandName,
+  url: siteContent.siteUrl,
   parentOrganization: {
     '@type': 'Organization',
-    name: 'CONZEX GLOBAL PRIVATE LIMITED',
-    url: 'https://www.conzex.com',
+    name: siteContent.parentCompany.name,
+    url: siteContent.parentCompany.url,
   },
-  subOrganization: [
-    {
-      '@type': 'Organization',
-      name: 'Mint AMC',
-      description: 'IT Annual Maintenance Contract Division',
-    },
-  ],
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-slate-text antialiased" suppressHydrationWarning>
-        <Navigation />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
+      <body className="min-h-screen bg-bg-body">{children}</body>
     </html>
   );
 }

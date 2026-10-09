@@ -1,130 +1,149 @@
-import React from 'react';
 import Link from 'next/link';
-import PageContainer from '@/components/layout/PageContainer';
-import PageHeroBand from '@/components/layout/PageHeroBand';
-import CtaBanner from '@/components/layout/CtaBanner';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import Badge from '@/components/ui/Badge';
-import Accordion from '@/components/ui/Accordion';
-import ComparisonTable from '@/components/ui/ComparisonTable';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/Card';
-import { CheckmarkCircleSymbol } from '@/components/symbols';
-import { pricingData } from '@/content/pricing';
+import { ArrowRight, Check, Minus } from 'lucide-react';
+import MarketingChrome from '@/components/layout/marketing-chrome';
+import PageContainer from '@/components/layout/page-container';
+import PageHeroBand, { MarketingCtaBand } from '@/components/layout/page-hero-band';
+import { heroCtaBtnClass, heroCtaGroupClass } from '@/lib/marketing-cta';
+import { pricingContent } from '@/content/pricing';
+import FaqAccordion from '@/components/ui/faq-accordion';
+import { PanelCard } from '@/components/ui/panel-card';
 
-export const metadata = {
-  title: 'Transparent IT AMC Pricing Tiers & Plans | Mint AMC',
-  description: 'Three-tier IT AMC pricing plans: Essential, Professional, and Enterprise with full feature breakdown and SLA comparison.',
-};
+export const metadata = { title: '{{META_PRICING_TITLE}}' };
 
 export default function PricingPage() {
   return (
-    <>
-      <PageHeroBand
-        title="Predictable, Transparent IT AMC Pricing"
-        subtitle="Scalable annual maintenance contracts with fixed SLAs, flexible payment schedules, and zero hidden costs."
-        badge={<Badge variant="mint">Pricing & Plans</Badge>}
-      />
+    <MarketingChrome>
+      <PageHeroBand title={pricingContent.heroTitle} subtitle={pricingContent.heroSubtitle} size="compact" align="left">
+        <div className={heroCtaGroupClass + ' !mx-0 !max-w-md'}>
+          <Link href="/contact" className={`${heroCtaBtnClass} bg-white text-dell-blue hover:bg-white/90`}>
+            {pricingContent.heroCtaQuote}
+          </Link>
+          <a href={pricingContent.pdfHref} className={`${heroCtaBtnClass} bg-white/10 text-white border border-white/25 hover:bg-white/20`}>
+            {pricingContent.heroCtaPdf}
+          </a>
+        </div>
+      </PageHeroBand>
 
-      <PageContainer>
-        <Breadcrumbs items={[{ label: 'Pricing' }]} />
-      </PageContainer>
-
-      {/* Pricing Cards Section */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-bg-body">
         <PageContainer>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {pricingData.tiers.map((tier) => (
-              <Card
-                key={tier.id}
-                className={`flex flex-col justify-between relative ${
-                  tier.isPopular ? 'border-tech-blue border-2 shadow-md' : ''
-                }`}
-              >
-                {tier.isPopular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-tech-blue text-white text-[10px] font-bold uppercase tracking-wider rounded">
-                    Most Popular Choice
-                  </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {pricingContent.tiers.map((tier) => (
+              <div key={tier.id} className="bg-white border border-border-card rounded p-5 flex flex-col relative">
+                {tier.popular && 'popularLabel' in tier && (
+                  <span className="absolute -top-2 right-4 text-[10px] font-semibold uppercase tracking-wide bg-dell-blue text-white px-2 py-0.5 rounded">
+                    {(tier as { popularLabel?: string }).popularLabel}
+                  </span>
                 )}
-                <div>
-                  <CardHeader className="text-center pt-8">
-                    <Badge variant={tier.isPopular ? 'blue' : 'gray'} className="mb-2">
-                      {tier.badge}
-                    </Badge>
-                    <CardTitle className="text-xl">{tier.name}</CardTitle>
-                    <div className="mt-4">
-                      <span className="text-3xl font-extrabold text-dark-navy">
-                        {tier.pricePlaceholder}
-                      </span>
-                      <span className="text-xs text-slate-text block mt-0.5">{tier.period}</span>
-                    </div>
-                    <CardDescription className="text-xs mt-3">
-                      {tier.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="py-4">
-                    <div className="text-xs font-semibold text-dark-navy mb-3">Included Capabilities:</div>
-                    <ul className="space-y-2">
-                      {tier.features.map((feat, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-slate-text">
-                          <CheckmarkCircleSymbol className="w-4 h-4 text-mint-green shrink-0 mt-0.5" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </div>
-                <CardFooter className="pt-4">
-                  <Link
-                    href={tier.ctaHref}
-                    className={`w-full py-2.5 text-center text-xs font-semibold rounded transition-colors ${
-                      tier.isPopular
-                        ? 'bg-tech-blue text-white hover:bg-tech-blue-hover'
-                        : 'bg-white border border-border-gray text-dark-navy hover:border-tech-blue'
-                    }`}
-                  >
-                    {tier.ctaLabel}
-                  </Link>
-                </CardFooter>
-              </Card>
+                <h3 className="text-sm font-bold text-text-primary">{tier.name}</h3>
+                <p className="text-xs text-text-secondary mt-1">{tier.tagline}</p>
+                <p className="text-2xl font-bold text-dell-blue mt-4">{tier.price}</p>
+                <p className="text-xs text-text-secondary">{tier.unit}</p>
+                <ul className="mt-4 space-y-2 text-sm text-text-secondary flex-1">
+                  {tier.features.map((f) => (
+                    <li key={f} className="flex gap-2">
+                      <Check className="w-4 h-4 text-green-healthy shrink-0" /> {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/contact" className="mt-5 inline-flex items-center justify-center gap-2 bg-dell-blue text-white text-sm font-semibold px-4 py-2 rounded hover:bg-dell-blue-hover">
+                  {tier.cta}
+                </Link>
+              </div>
             ))}
           </div>
         </PageContainer>
       </section>
 
-      {/* Feature Comparison Matrix */}
-      <section className="py-16 bg-cool-white/50 border-t border-b border-border-gray">
+      <section className="py-12 bg-white border-t border-border-card">
         <PageContainer>
-          <div className="max-w-2xl mx-auto text-center mb-10">
-            <Badge variant="blue" className="mb-2">Feature Breakdown</Badge>
-            <h2 className="text-2xl sm:text-3xl font-bold text-dark-navy tracking-tight">
-              Detailed Plan Feature Comparison
-            </h2>
+          <h2 className="text-lg font-bold text-text-primary mb-4">{pricingContent.perServiceTableTitle}</h2>
+          <div className="border border-border-card rounded overflow-hidden">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-card-header border-b border-border-card text-left">
+                  <th className="p-3 font-semibold text-text-primary">{pricingContent.tableHeaders.service}</th>
+                  <th className="p-3 font-semibold text-text-primary hidden sm:table-cell">{pricingContent.tableHeaders.coverage}</th>
+                  <th className="p-3 font-semibold text-text-primary">{pricingContent.tableHeaders.price}</th>
+                  <th className="p-3 font-semibold text-text-primary hidden md:table-cell">{pricingContent.tableHeaders.sla}</th>
+                  <th className="p-3 font-semibold text-text-primary">{pricingContent.tableHeaders.cta}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border-card">
+                {pricingContent.perServiceRows.map((row) => (
+                  <tr key={row.service} className="hover:bg-row-hover">
+                    <td className="p-3 font-medium text-text-primary">{row.service}</td>
+                    <td className="p-3 text-text-secondary hidden sm:table-cell">{row.coverage}</td>
+                    <td className="p-3 text-text-secondary">{row.price}</td>
+                    <td className="p-3 text-text-secondary hidden md:table-cell">{row.sla}</td>
+                    <td className="p-3">
+                      <Link href="/contact" className="text-dell-blue font-semibold hover:underline text-xs">
+                        {pricingContent.tableHeaders.cta}
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-
-          <ComparisonTable features={pricingData.comparisonMatrix} />
         </PageContainer>
       </section>
 
-      {/* FAQ Accordion Section */}
-      <section className="py-16 bg-white border-b border-border-gray">
+      <section className="py-12 bg-bg-body">
         <PageContainer>
-          <div className="max-w-2xl mx-auto text-center mb-10">
-            <Badge variant="navy" className="mb-2">Frequently Asked Questions</Badge>
-            <h2 className="text-2xl sm:text-3xl font-bold text-dark-navy tracking-tight">
-              Common Questions About AMC Contracts
-            </h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <Accordion items={pricingData.faqs} />
+          <h2 className="text-lg font-bold text-text-primary mb-4">{pricingContent.comparisonTitle}</h2>
+          <div className="border border-border-card rounded overflow-hidden bg-white">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-card-header border-b border-border-card">
+                  <th className="p-3 text-left font-semibold">{pricingContent.tableHeaders.feature}</th>
+                  <th className="p-3 text-center font-semibold">{pricingContent.tableHeaders.essential}</th>
+                  <th className="p-3 text-center font-semibold">{pricingContent.tableHeaders.professional}</th>
+                  <th className="p-3 text-center font-semibold">{pricingContent.tableHeaders.enterprise}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border-card">
+                {pricingContent.comparisonFeatures.map((row) => (
+                  <tr key={row.name} className="hover:bg-row-hover">
+                    <td className="p-3 text-text-primary">{row.name}</td>
+                    {(['essential', 'professional', 'enterprise'] as const).map((key) => (
+                      <td key={key} className="p-3 text-center">
+                        {row[key] ? <Check className="w-4 h-4 text-green-healthy inline" /> : <Minus className="w-4 h-4 text-text-secondary inline" />}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </PageContainer>
       </section>
 
-      <CtaBanner
-        title="Have Custom Multi-Location Pricing Requirements?"
-        subtitle="Our team provides consolidated enterprise billing and customized SLAs across national branch offices."
-      />
-    </>
+      <section className="py-12 bg-white border-t border-border-card">
+        <PageContainer>
+          <h2 className="text-lg font-bold text-text-primary mb-4">{pricingContent.addonsTitle}</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {pricingContent.addons.map((a) => (
+              <PanelCard key={a.title}>
+                <h3 className="text-sm font-semibold text-text-primary">{a.title}</h3>
+                <p className="text-sm text-text-secondary mt-2 leading-relaxed">{a.description}</p>
+                <p className="text-sm font-bold text-dell-blue mt-3">{a.price}</p>
+              </PanelCard>
+            ))}
+          </div>
+        </PageContainer>
+      </section>
+
+      <section className="py-12 bg-bg-body">
+        <PageContainer>
+          <FaqAccordion items={pricingContent.faq} />
+        </PageContainer>
+      </section>
+
+      <MarketingCtaBand title={pricingContent.closingCtaTitle}>
+        <Link href="/contact" className={`${heroCtaBtnClass} bg-white text-dell-blue hover:bg-white/90 mx-auto max-w-xs`}>
+          {pricingContent.closingCtaButton} <ArrowRight className="w-4 h-4" />
+        </Link>
+      </MarketingCtaBand>
+    </MarketingChrome>
   );
 }
